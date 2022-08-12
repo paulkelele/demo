@@ -7,19 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
 import database.SessionFactoryDataBase;
-import database.SessionFactoryGeneric;
 import security.BCrypt;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
