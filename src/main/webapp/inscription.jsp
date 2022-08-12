@@ -2,8 +2,10 @@
 
 <h1>Inscription</h1>
 <form action="inscription" method="post">
-    <input type="email" name="email" id="nom">
-    <input type="password" name="password" id="password">
+    <input class="form-control" type="email" placeholder="Email" name="email" id="nom">
+    <input class="form-control" type="password"placeholder="Mot de passe"  name="password" id="password">
+    <input class="form-control" type="text" name="nom" placeholder="Nom" id="nom">
+    <input class="form-control" type="text" name="prenom" placeholder="Prenom" id="prenom">
     <button class="btn btn-primary" type="submit">Envoyer</button>
 </form>
 <% 
