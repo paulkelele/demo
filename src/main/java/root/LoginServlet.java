@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
         try {
             tx = mSession.beginTransaction();
             String sql = "SELECT * FROM Personne WHERE email = :email";
+            @SuppressWarnings("unchecked")
             NativeQuery<Personne> nq = mSession.createSQLQuery(sql);
             nq.addEntity(Personne.class);
             nq.setParameter("email", email);
