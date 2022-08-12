@@ -28,11 +28,13 @@ public class InscriptionServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        String email = req.getParameter("email");
        String password = req.getParameter("password");
+       String nom = req.getParameter("nom");
+       String prenom = req.getParameter("prenom");
        password = BCrypt.hashpw(password, BCrypt.gensalt());
        req.setAttribute("email", email);
        Personne p = new Personne();
-       p.setNom("Jean");
-       p.setPrenom("Eric");
+       p.setNom(nom);
+       p.setPrenom(prenom);
        p.setEmail(email);
        p.setPassword(password);
         SessionFactoryDataBase db = new SessionFactoryDataBase();
