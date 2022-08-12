@@ -2,10 +2,11 @@
 
  
  <h1>login</h1>
+ <form action="login" method="post">
+    <input type="email" name="email" id="nom">
+    <input type="password" name="password" id="password">
+    <button class="btn btn-primary" type="submit">Envoyer</button>
+</form>
  
-    <div class="row">
-        <div class="column">hello</div>
-        <div class="column">how</div>
-        <div class="column">lo</div>
-    </div>
+    
 <jsp:directive.include file="footer.jsp" />
