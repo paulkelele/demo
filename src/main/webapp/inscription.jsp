@@ -15,5 +15,4 @@ if(request.getAttribute("email") != null){
  <%
 }
  %>
-</body>
-</html>
+ <jsp:directive.include file="footer.jsp" />
