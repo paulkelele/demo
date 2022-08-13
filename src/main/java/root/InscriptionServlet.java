@@ -58,7 +58,7 @@ public class InscriptionServlet extends HttpServlet {
             if (tx != null) {
                 tx.rollback();
             }
-             messages.put("error", "Email déja enregistré");
+             messages.put("error", "Un compte est déjà associé à cet email.");
             doGet(req, resp);
             return;
         } finally {

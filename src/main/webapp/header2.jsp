@@ -12,7 +12,7 @@
 <body>
 <div class="Header">
  <div class="Header-item Header-item--full">
-    Bienvenu ${s_id}
+    bonjour ${s_id}
   </div>
   <div class="Header-item mr-0">
     <a href="logout.jsp" class="Header-link" style="color:yellow ;">Vous d&eacute;connecter</a>
