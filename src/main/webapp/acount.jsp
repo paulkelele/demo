@@ -9,7 +9,7 @@ if(session.getAttribute("s_id")== null){
 <jsp:directive.include file="header2.jsp" />
 
 <div class="ml-1">
- <h1>Welcome</h1>
+ <h3>Espace personnel</h3>
   
  
 </div>
