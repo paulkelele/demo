@@ -6,6 +6,5 @@
     <input class="form-control" type="password" placeholder="Mot de passe" name="password" id="password">
     <button class="btn btn-primary" type="submit">Envoyer</button>
 </form>
- 
-    
+ <div style="color:red;">${messages.error}</div>
 <jsp:directive.include file="footer.jsp" />

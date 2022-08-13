@@ -12,12 +12,12 @@
 <body>
 <div class="Header">
  <div class="Header-item">
-    <a href="${pageContext.request.contextPath}/" class="Header-link">Accueil</a>
+    <a href="${pageContext.request.contextPath}/" class="Header-link ">Accueil</a>
   </div>
   <div class="Header-item">
     <a href="${pageContext.request.contextPath}/login" class="Header-link">Login</a>
   </div>
    <div class="Header-item">
-    <a href="${pageContext.request.contextPath}/inscription" class="Header-link">Inscription</a>
+    <a href="${pageContext.request.contextPath}/inscription" class="Header-link ">Inscription</a>
   </div>
 </div>

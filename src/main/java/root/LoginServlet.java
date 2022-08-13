@@ -17,6 +17,8 @@ import database.SessionFactoryDataBase;
 import security.BCrypt;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -29,6 +31,10 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        Map<String, String> messages = new HashMap<String, String>();
+        req.setAttribute("messages", messages);
+        
         String email = req.getParameter("email");
         email = email.toLowerCase();
         String password = req.getParameter("password");
@@ -69,6 +75,7 @@ public class LoginServlet extends HttpServlet {
                 hs.setAttribute("s_id", userToConnect.getNom());
                 resp.sendRedirect("acount");
              }else{
+                messages.put("error", "identifiants inconnus");
                 doGet(req, resp);
              }
         }
