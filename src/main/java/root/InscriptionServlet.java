@@ -20,9 +20,6 @@ import security.BCrypt;
 public class InscriptionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getAttribute("email") != "" || req.getAttribute("email") != null) {
-            req.setAttribute("email", req.getAttribute("email"));
-        }
         req.getRequestDispatcher("inscription.jsp").forward(req, resp);
     }
 
