@@ -15,7 +15,7 @@
     bonjour ${s_id}
   </div>
   <div class="Header-item mr-0">
-    <a href="logout.jsp" class="Header-link" style="color:yellow ;">Vous d&eacute;connecter</a>
+    <a href="logout.jsp" class="Header-link" style="color:yellow ;">Se d&eacute;connecter</a>
   </div>
     
 </div>
