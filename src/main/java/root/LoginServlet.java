@@ -38,6 +38,11 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         email = email.toLowerCase();
         String password = req.getParameter("password");
+        if(password.isEmpty() || email.isEmpty()){
+            messages.put("error", "les champs Email et Mot de passe doivent être renseignés.");
+            doGet(req, resp);
+            return;
+        }
         String db_password = "";
         SessionFactoryDataBase sfg = new SessionFactoryDataBase();
         SessionFactory sf = null;
