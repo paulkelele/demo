@@ -8,7 +8,7 @@
         <input class="form-control" type="password" placeholder="Mot de passe" name="password" id="password">
         <input class="form-control" type="text" name="nom" placeholder="Nom" id="nom">
         <input class="form-control" type="text" name="prenom" placeholder="Prenom" id="prenom">
-        <button class="btn btn-primary" type="submit">Envoyer</button>
+        <button class="btn" style="color:yellow ;" type="submit">S'inscrire</button>
     </form>
     <% if(request.getAttribute("email") !=null){ String nom=(String) request.getAttribute("email"); %>
         <div>

@@ -15,9 +15,9 @@
     <a href="${pageContext.request.contextPath}/" class="Header-link ">Accueil</a>
   </div>
   <div class="Header-item">
-    <a href="${pageContext.request.contextPath}/login" class="Header-link">Login</a>
+    <a href="${pageContext.request.contextPath}/login" class="Header-link" style="color:yellow ;">Se connecter</a>
   </div>
    <div class="Header-item">
-    <a href="${pageContext.request.contextPath}/inscription" class="Header-link ">Inscription</a>
+    <a href="${pageContext.request.contextPath}/inscription" class="Header-link" style="color:yellow ;">Cr&eacute;er un compte</a>
   </div>
 </div>
