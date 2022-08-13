@@ -1,7 +1,7 @@
 <jsp:directive.include file="header.jsp" />
 
 <div class="ml-3">
-    <h1>Cr&eacute;ation de votre compte</h1>
+    <h3>Cr&eacute;ation de votre compte</h3>
     <form action="inscription" method="post">
         <input class="form-control" type="email" placeholder="Email" name="email" id="nom">
         <input class="form-control" type="password" placeholder="Mot de passe" name="password" id="password">

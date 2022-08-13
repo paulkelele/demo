@@ -6,12 +6,11 @@ if(session.getAttribute("s_id")== null){
 	response.sendRedirect("login");
 }
  %>
-<jsp:directive.include file="header.jsp" />
+<jsp:directive.include file="header2.jsp" />
 
 <div class="ml-1">
- <h1>Welcome: ${s_id}</h1>
+ <h1>Welcome</h1>
   
-
- <a href="logout.jsp">logout</a>
+ 
 </div>
 <jsp:directive.include file="footer.jsp" />
