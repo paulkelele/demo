@@ -1,7 +1,6 @@
 <jsp:directive.include file="header.jsp" />
 
-<div class="ml-1">
-
+<div class="ml-3">
     <h1>Inscription</h1>
     <form action="inscription" method="post">
         <input class="form-control" type="email" placeholder="Email" name="email" id="nom">

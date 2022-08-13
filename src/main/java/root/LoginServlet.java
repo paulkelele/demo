@@ -73,6 +73,11 @@ public class LoginServlet extends HttpServlet {
             mSession.close();
             sf.close();
         }
+        if(null == userToConnect){
+            messages.put("error", "utilisateur inconnu. merci de vous enregistrer");
+            doGet(req, resp);
+            return;
+        }
         if(!db_password.isEmpty()){
              boolean res = BCrypt.checkpw(password, db_password);
               if(res == true){
@@ -80,7 +85,7 @@ public class LoginServlet extends HttpServlet {
                 hs.setAttribute("s_id", userToConnect.getNom());
                 resp.sendRedirect("acount");
              }else{
-                messages.put("error", "identifiants inconnus");
+                messages.put("error", "mauvais idendifiants");
                 doGet(req, resp);
              }
         }
