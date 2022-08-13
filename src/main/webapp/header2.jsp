@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="Header">
- <div class="Header-item--full">
-    <a class="Header-link ">Bienvenu ${s_id}</a>
+ <div class="Header-item Header-item--full">
+    Bienvenu ${s_id}
   </div>
   <div class="Header-item mr-0">
     <a href="logout.jsp" class="Header-link" style="color:yellow ;">Vous d&eacute;connecter</a>

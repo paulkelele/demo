@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
              boolean res = BCrypt.checkpw(password, db_password);
               if(res == true){
                 HttpSession hs = req.getSession();
-                hs.setAttribute("s_id", userToConnect.getNom());
+                hs.setAttribute("s_id", userToConnect.getPrenom()+" "+userToConnect.getNom());
                 resp.sendRedirect("acount");
              }else{
                 messages.put("error", "mauvais idendifiants");

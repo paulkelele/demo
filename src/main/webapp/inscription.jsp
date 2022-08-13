@@ -9,7 +9,8 @@
         <input class="form-control" type="text" name="prenom" placeholder="Prenom" id="prenom">
         <button class="btn" style="color:yellow ;" type="submit">Je cr&eacute;e mon compte</button>
     </form>
-   
+    <div style="color:yellow;">${messages.error}</div>
+
 
 </div>
 <jsp:directive.include file="footer.jsp" />

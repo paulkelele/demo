@@ -1,6 +1,8 @@
 package root;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,11 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
+ 
 import database.SessionFactoryDataBase;
 import security.BCrypt;
 
@@ -25,6 +26,9 @@ public class InscriptionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Map<String, String> messages = new HashMap<String, String>();
+        req.setAttribute("messages", messages);
+        
         String email = req.getParameter("email");
         email = email.toLowerCase();
         String password = req.getParameter("password");
@@ -50,10 +54,13 @@ public class InscriptionServlet extends HttpServlet {
             tx = session.beginTransaction();
             session.persist(p);
             tx.commit();
-        } catch (HibernateException e) {
+        } catch ( Exception  e) {
             if (tx != null) {
                 tx.rollback();
             }
+             messages.put("error", "Email déja enregistré");
+            doGet(req, resp);
+            return;
         } finally {
             session.close();
             sessionFactory.close();

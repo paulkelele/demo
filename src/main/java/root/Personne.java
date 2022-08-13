@@ -16,7 +16,7 @@ public class Personne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 50)
+    @Column(length = 50,unique = true)
     private String email;
 
     @Column(length = 100)
