@@ -9,8 +9,7 @@
     <button class="btn btn-primary" type="submit">Envoyer</button>
 </form>
 <% 
- 
-if(request.getAttribute("email") != null){
+ if(request.getAttribute("email") != null){
     String nom = (String) request.getAttribute("email");
     %>
 <div><%= nom %></div>

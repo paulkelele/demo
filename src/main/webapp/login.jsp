@@ -1,6 +1,5 @@
- <jsp:directive.include file="header.jsp" />
 
- 
+ <jsp:directive.include file="header.jsp" />
  <h1>login</h1>
  <form action="login" method="post">
     <input class="form-control" type="email" placeholder="Email" name="email" id="nom">

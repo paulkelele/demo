@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -34,6 +35,7 @@ public class LoginServlet extends HttpServlet {
         String db_password = "";
         SessionFactoryDataBase sfg = new SessionFactoryDataBase();
         SessionFactory sf = null;
+        Personne userToConnect = null;
         try {
             sf = sfg.getSessionFactoryInstance(Personne.class);
         } catch (Exception e) {
@@ -48,9 +50,9 @@ public class LoginServlet extends HttpServlet {
             NativeQuery<Personne> nq = mSession.createSQLQuery(sql);
             nq.addEntity(Personne.class);
             nq.setParameter("email", email);
-            Personne p1 = (Personne) nq.uniqueResult();
-             if(p1 != null){
-                db_password = p1.getPassword();
+            userToConnect = (Personne) nq.uniqueResult();
+             if(userToConnect != null){
+                db_password = userToConnect.getPassword();
              }
              tx.commit();
         } catch (HibernateException e) {
@@ -62,8 +64,14 @@ public class LoginServlet extends HttpServlet {
         }
         if(!db_password.isEmpty()){
              boolean res = BCrypt.checkpw(password, db_password);
-             System.out.println("Estce que le mot de passe est coorect ? "+res);
+              if(res == true){
+                HttpSession hs = req.getSession();
+                hs.setAttribute("s_id", userToConnect.getNom());
+                resp.sendRedirect("acount");
+             }else{
+                doGet(req, resp);
+             }
         }
-        doGet(req, resp);
+       
     }
 }
