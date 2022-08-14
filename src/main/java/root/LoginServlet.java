@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         email = email.toLowerCase();
         String password = req.getParameter("password");
-        if(password.isEmpty() || email.isEmpty()){
+        if(password.trim().isEmpty() || email.trim().isEmpty()){
             messages.put("error", "les champs Email et Mot de passe doivent être renseignés.");
             doGet(req, resp);
             return;
