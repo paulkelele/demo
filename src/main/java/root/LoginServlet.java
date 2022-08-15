@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
         email = email.toLowerCase();
         String password = req.getParameter("password");
         if(password.trim().isEmpty() || email.trim().isEmpty()){
-            messages.put("error", "les champs Email et Mot de passe doivent être renseignés.");
+            messages.put("error", "Les champs Email et Mot de passe doivent être renseignés.");
             doGet(req, resp);
             return;
         }
@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
             sf.close();
         }
         if(null == userToConnect){
-            messages.put("error", "utilisateur inconnu. merci de vous enregistrer");
+            messages.put("error", "Identifiant inconnu. Veuillez vous enregistrer");
             doGet(req, resp);
             return;
         }
@@ -85,7 +85,7 @@ public class LoginServlet extends HttpServlet {
                 hs.setAttribute("s_id", userToConnect.getPrenom()+" "+userToConnect.getNom());
                 resp.sendRedirect("acount");
              }else{
-                messages.put("error", "mauvais idendifiants");
+                messages.put("error", "Identification incorrecte");
                 doGet(req, resp);
              }
         }

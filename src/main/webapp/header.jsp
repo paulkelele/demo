@@ -7,6 +7,11 @@
 <style type="text/css">
   <%@include file="resources/css/primer.css" %>
 </style>
+<style>
+body{
+      font-family: system-ui;
+}
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
