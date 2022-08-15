@@ -35,17 +35,20 @@ public class InscriptionServlet extends HttpServlet {
         String password = req.getParameter("password");
         String nom = req.getParameter("nom");
         String prenom = req.getParameter("prenom");
+
+        // Encode password via BCrypt
         password = BCrypt.hashpw(password, BCrypt.gensalt());
+
+
         req.setAttribute("email", email);
         Personne p = new Personne();
         p.setNom(nom);
         p.setPrenom(prenom);
         p.setEmail(email);
         p.setPassword(password);
-        SessionFactoryDataBase db = new SessionFactoryDataBase();
         SessionFactory sessionFactory = null;
         try {
-            sessionFactory = db.getSessionFactoryInstance(p.getClass());
+            sessionFactory = SessionFactoryDataBase.getSessionFactoryInstance(p.getClass());
         } catch (Exception e) {
             e.printStackTrace();
         }

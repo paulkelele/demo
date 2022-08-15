@@ -45,11 +45,10 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         String db_password = "";
-        SessionFactoryDataBase sfg = new SessionFactoryDataBase();
-        SessionFactory sf = null;
+         SessionFactory sf = null;
         Personne userToConnect = null;
         try {
-            sf = sfg.getSessionFactoryInstance(Personne.class);
+            sf = SessionFactoryDataBase.getSessionFactoryInstance(Personne.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,12 +73,14 @@ public class LoginServlet extends HttpServlet {
             mSession.close();
             sf.close();
         }
+        // Si l'utilisateur est inconnu dans la BDD
         if(null == userToConnect){
             messages.put("error", "Identifiant inconnus. Veuillez vous enregistrer");
             doGet(req, resp);
             return;
         }
         if(!db_password.isEmpty()){
+            // Decrypte password via BCrypt
              boolean res = BCrypt.checkpw(password, db_password);
               if(res == true){
                 HttpSession hs = req.getSession();

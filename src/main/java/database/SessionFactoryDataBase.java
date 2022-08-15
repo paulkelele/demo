@@ -10,7 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 public class SessionFactoryDataBase {
-  private SessionFactory configureSessionFactory(@SuppressWarnings("rawtypes") Class o) throws IOException {
+  private static SessionFactory configureSessionFactory(@SuppressWarnings("rawtypes") Class o) throws IOException {
 
     InputStream inputStream = SessionFactoryDataBase.class.getResourceAsStream("../hibernate.properties");
 
@@ -26,7 +26,7 @@ public class SessionFactoryDataBase {
     return sf;
   }
 
-  public SessionFactory getSessionFactoryInstance(@SuppressWarnings("rawtypes") Class o) throws Exception {
+  public static SessionFactory getSessionFactoryInstance(@SuppressWarnings("rawtypes") Class o) throws Exception {
     return configureSessionFactory(o);
   }
 
