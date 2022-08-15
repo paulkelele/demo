@@ -17,9 +17,13 @@ public class AcountServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       HttpSession _session = req.getSession();
-      Personne p = (Personne)_session.getAttribute("_user");
-      _session.setAttribute("s_id", p.getPrenom()+"-"+p.getNom());
-     req.getRequestDispatcher("acount.jsp").forward(req,resp);
+      Personne p = null;
+      if(null != _session.getAttribute("_user")){
+        p = (Personne)_session.getAttribute("_user");
+        _session.setAttribute("s_id", p.getPrenom()+"-"+p.getNom());
+      }
+        
+      req.getRequestDispatcher("acount.jsp").forward(req,resp);
       }
 
     @Override
