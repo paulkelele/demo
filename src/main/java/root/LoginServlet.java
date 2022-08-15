@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
             sf.close();
         }
         if(null == userToConnect){
-            messages.put("error", "Identifiant inconnu. Veuillez vous enregistrer");
+            messages.put("error", "Identifiant inconnus. Veuillez vous enregistrer");
             doGet(req, resp);
             return;
         }
