@@ -20,7 +20,7 @@ public class AcountServlet extends HttpServlet{
       Personne p = null;
       if(null != _session.getAttribute("_user")){
         p = (Personne)_session.getAttribute("_user");
-        _session.setAttribute("s_id", p.getPrenom()+"-"+p.getNom());
+        _session.setAttribute("s_id", p.getPrenom()+" "+p.getNom());
       }
         
       req.getRequestDispatcher("acount.jsp").forward(req,resp);
