@@ -83,8 +83,10 @@ public class LoginServlet extends HttpServlet {
             // Decrypte password via BCrypt
              boolean res = BCrypt.checkpw(password, db_password);
               if(res == true){
-                HttpSession hs = req.getSession();
-                hs.setAttribute("s_id", userToConnect.getPrenom()+" "+userToConnect.getNom());
+                HttpSession _session = req.getSession();
+
+                // _session.setAttribute("s_id", userToConnect.getPrenom()+" "+userToConnect.getNom());
+                _session.setAttribute("_user", userToConnect);
                 resp.sendRedirect("acount");
              }else{
                 messages.put("error", "Identification incorrecte");
