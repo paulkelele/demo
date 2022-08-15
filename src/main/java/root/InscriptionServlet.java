@@ -15,6 +15,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
  
 import database.SessionFactoryDataBase;
+import entities.Personne;
 import security.BCrypt;
 
 @WebServlet("/inscription")

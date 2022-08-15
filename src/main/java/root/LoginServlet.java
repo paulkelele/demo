@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
 import database.SessionFactoryDataBase;
+import entities.Personne;
 import security.BCrypt;
 
 import java.io.IOException;
