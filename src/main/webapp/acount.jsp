@@ -14,11 +14,18 @@ if(session.getAttribute("s_id")== null){
  
 <div class="d-table col-12">
   <div class="col-4 d-table-cell border p-2">
-<form action="settings" method="post">
-	    <input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" id="pseudo">
-		<button class="btn mt-1" style="color:yellow ;" type="submit">
-			Enregistrer</button>
-	   </form>  </div>
+		<form action="settings" method="post">
+	    	<input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" id="pseudo">
+			<button class="btn mt-1" style="color:yellow ;" type="submit">
+				Enregistrer</button>
+	   	</form>
+	   	<% String pseudo = (String)session.getAttribute("pseudo");
+	   	if(null != pseudo){
+	   		
+	   		out.println(pseudo);
+	   	}%>
+	   	  
+	</div>
 	<!--
   -->
 	<div class="col-4 d-table-cell border p-2">
