@@ -47,7 +47,7 @@ public class Personne implements Serializable {
 	private Date created_at = new Date();
 
     @OneToOne
-    @JoinColumn(name = "toto")
+    @JoinColumn(name = "commentaire_id")
     private Commentaire commentaire;
   
 }
