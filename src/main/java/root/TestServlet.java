@@ -3,7 +3,6 @@ package root;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import utilities.PersonnalLogger;
 
 @WebServlet("/test")
 public class TestServlet extends HttpServlet{
@@ -30,11 +27,7 @@ public class TestServlet extends HttpServlet{
         
         if(null != feel && !feel.isEmpty()){
             list.add(feel);
-            try {
-              PersonnalLogger.WriteToFile(feel);
-            } catch (Exception e) {
-               e.printStackTrace();
-            }
+             System.out.println(feel);
             _session.setAttribute("commentaire", list);
         }
        

@@ -1,6 +1,7 @@
 package root;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,6 @@ import org.hibernate.Transaction;
 import database.SessionFactoryDataBase;
 import entities.Commentaire;
 import entities.Personne;
-import utilities.PersonnalLogger;
 
 @WebServlet("/acount")
 public class AcountServlet extends HttpServlet{
@@ -36,11 +36,7 @@ public class AcountServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       String comment = (String)req.getParameter("comment");
       if(null != comment && !comment.isEmpty()){
-        try {
-          PersonnalLogger.WriteToFile(p.getNom());
-        } catch (Exception e) {
-           e.printStackTrace();
-        }
+         
         Commentaire cm = new Commentaire();
         cm.setUncommentaire(comment);
         cm.setPersonne(p);
