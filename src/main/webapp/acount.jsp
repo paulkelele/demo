@@ -7,6 +7,7 @@ if(session.getAttribute("s_id")== null){
 }
  %>
  <%@page import="java.util.*,java.util.stream.*" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <jsp:directive.include file="header2.jsp" />
 
@@ -35,9 +36,15 @@ if(session.getAttribute("s_id")== null){
 	   <%
 	   List<String> commentaire = (ArrayList<String>) session.getAttribute("commentaire");
 	   if(null != commentaire){
-		for(String c:commentaire){
-			%>
-			<div>${c}</div>
+		for(String com:commentaire){%>
+			<div class="Box mt-2">
+				<ul>
+   				 <li class="Box-row">
+					<%= com %>
+					</li>
+				</ul>
+			
+			</div>
 			<%
 		}
 	   }
