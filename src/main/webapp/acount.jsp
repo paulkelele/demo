@@ -17,12 +17,20 @@ if(session.getAttribute("s_id")== null){
 	<!--
 	-->
 	<div class="col-4 d-table-cell   p-2">
+		<textarea rows="4" cols="50" name="comment" form="cmtform" placeholder="Please enter text">
+			
+		</textarea>
+		<form action="" method="post" id="cmtform">
+			
+			<button class="btn" style="color:yellow ;" type="submit">Tipong</button>
+		</form>
 	  Pork chop cupim cow turkey frankfurter, landjaeger fatback hamburger meatball salami spare ribs. Rump tenderloin
 	  salami, hamburger frankfurter landjaeger andouille.
 	</div>
 	<!--
 	-->
 	<div class="col-4 d-table-cell   p-2">
+		
 	  Brisket tongue frankfurter cupim strip steak rump picanha pancetta pork pig kevin pastrami biltong. Shankle venison
 	  meatball swine sausage ground round. Tail pork loin ribeye kielbasa short ribs pork chop.
 	Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea voluptas quibusdam ipsam omnis, 

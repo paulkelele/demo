@@ -21,11 +21,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
         req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 
