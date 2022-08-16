@@ -18,8 +18,10 @@ if(session.getAttribute("s_id")== null){
 	-->
 	<div class="col-4 d-table-cell   p-2">
 		<form action="acount" method="post">
-           <input class="form-control" type="text" name="comment" placeholder="comment" id="prenom">
-            <button class="btn" style="color:yellow ;" type="submit">
+           <!-- <input class="form-control" type="text" name="comment" placeholder="comment" id="prenom"> -->
+			<textarea class="form-control" style="resize: none;"
+			name="comment" placeholder="Commentaire.." rows="4" cols="50"></textarea>
+		   <button class="btn mt-1" style="color:yellow ;" type="submit">
 				Enregistrer</button>
         </form>
 	  Pork chop cupim cow turkey frankfurter, landjaeger fatback hamburger meatball salami spare ribs. Rump tenderloin

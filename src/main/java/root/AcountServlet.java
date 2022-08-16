@@ -37,7 +37,7 @@ public class AcountServlet extends HttpServlet{
       String comment = (String)req.getParameter("comment");
       if(null != comment && !comment.isEmpty()){
         try {
-          PersonnalLogger.WriteToFile(p.toString());
+          PersonnalLogger.WriteToFile(p.getNom());
         } catch (Exception e) {
            e.printStackTrace();
         }
