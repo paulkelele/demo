@@ -7,13 +7,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
+@Data @NoArgsConstructor
 public class Commentaire   {
   
     @Id
@@ -22,20 +21,6 @@ public class Commentaire   {
 
    private String uncommentaire;
 
-public void setId(int id) {
-    this.id = id;
-}
-public void setUncommentaire(String uncommentaire) {
-    this.uncommentaire = uncommentaire;
-}
-
-public int getId() {
-    return id;
-}
-
-public String getUncommentaire() {
-    return uncommentaire;
-}
-     
+    
    
 }

@@ -15,11 +15,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
  
  
 
 @Entity
+@Data @NoArgsConstructor
 public class Personne implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -46,49 +49,5 @@ public class Personne implements Serializable {
     @OneToOne
     @JoinColumn(name = "toto")
     private Commentaire commentaire;
- 
- public Date getCreated_at() {
-     return created_at;
- }
-
- public String getEmail() {
-     return email;
- }
-
- public int getId() {
-     return id;
- }
-
- public String getNom() {
-     return nom;
- }
-
- public String getPassword() {
-     return password;
- }
-
- public String getPrenom() {
-     return prenom;
-  }
-
-  public void setCreated_at(Date created_at) {
-      this.created_at = created_at;
-  }
-public void setEmail(String email) {
-    this.email = email;
-}
-public void setId(int id) {
-    this.id = id;
-}
-public void setNom(String nom) {
-    this.nom = nom;
-}
-
-public void setPassword(String password) {
-    this.password = password;
-}
-
-public void setPrenom(String prenom) {
-    this.prenom = prenom;
-}
+  
 }
