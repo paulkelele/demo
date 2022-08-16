@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -8,10 +9,12 @@ import java.util.Date;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -23,9 +26,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor
-public class Personne implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Personne   {
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -46,8 +48,11 @@ public class Personne implements Serializable {
 	@Column(columnDefinition="DATETIME(3)")
 	private Date created_at = new Date();
 
-    @OneToOne
-    @JoinColumn(name = "commentaire_id")
-    private Commentaire commentaire;
+    @OneToMany(
+        mappedBy = "personne", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true, 
+        fetch = FetchType.LAZY)
+    private List<Commentaire> commentaire = new ArrayList<>();
   
 }

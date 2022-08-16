@@ -63,14 +63,13 @@ public class InscriptionServlet extends HttpServlet {
                 tx.rollback();
             }
             messages.put("error", "Un compte est déjà associé à cet email.");
-            messages.put("error", e.getMessage());
-            doGet(req, resp);
+             doGet(req, resp);
             return;
         } finally {
             session.close();
             sessionFactory.close();
         }
-
+         messages.put("ok", "Votre compte a bien été créé.");
         doGet(req, resp);
     }
 }
