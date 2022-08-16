@@ -17,13 +17,11 @@ if(session.getAttribute("s_id")== null){
 	<!--
 	-->
 	<div class="col-4 d-table-cell   p-2">
-		<textarea rows="4" cols="50" name="comment" form="cmtform" placeholder="Please enter text">
-			
-		</textarea>
-		<form action="" method="post" id="cmtform">
-			
-			<button class="btn" style="color:yellow ;" type="submit">Tipong</button>
-		</form>
+		<form action="acount" method="post">
+           <input class="form-control" type="text" name="comment" placeholder="comment" id="prenom">
+            <button class="btn" style="color:yellow ;" type="submit">
+				Enregistrer</button>
+        </form>
 	  Pork chop cupim cow turkey frankfurter, landjaeger fatback hamburger meatball salami spare ribs. Rump tenderloin
 	  salami, hamburger frankfurter landjaeger andouille.
 	</div>

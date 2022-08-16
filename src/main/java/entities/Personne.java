@@ -16,12 +16,13 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
  
  
 
 @Entity
-@Data @NoArgsConstructor
+@Data @NoArgsConstructor @ToString
 public class Personne   {
  
     @Id
@@ -48,7 +49,7 @@ public class Personne   {
         mappedBy = "personne", 
         cascade = CascadeType.ALL, 
         orphanRemoval = true, 
-        fetch = FetchType.LAZY)
+        fetch = FetchType.EAGER)
     private List<Commentaire> commentaire = new ArrayList<>();
   
 }

@@ -8,16 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
- 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import database.SessionFactoryDataBase;
+import entities.Commentaire;
 import entities.Personne;
+import utilities.PersonnalLogger;
 
 @WebServlet("/acount")
 public class AcountServlet extends HttpServlet{
-     
+  Personne p = null;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       HttpSession _session = req.getSession();
-      Personne p = null;
+      
       if(null != _session.getAttribute("_user")){
         p = (Personne)_session.getAttribute("_user");
         _session.setAttribute("s_id", p.getPrenom()+" "+p.getNom());
@@ -28,6 +34,40 @@ public class AcountServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         super.doPost(req, resp);
+      String comment = (String)req.getParameter("comment");
+      if(null != comment && !comment.isEmpty()){
+        try {
+          PersonnalLogger.WriteToFile(p.toString());
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        Commentaire cm = new Commentaire();
+        cm.setUncommentaire(comment);
+        cm.setPersonne(p);
+        SessionFactoryDataBase sfd = new SessionFactoryDataBase();
+        SessionFactory sessionFactory = null;
+        try {
+            sessionFactory = sfd.getSessionFactoryInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.persist(cm);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+             
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+        
+      }
+      doGet(req, resp);
     }
 }
