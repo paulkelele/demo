@@ -45,10 +45,12 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         String db_password = "";
-         SessionFactory sf = null;
+        SessionFactoryDataBase sfd = new SessionFactoryDataBase();
+
+          SessionFactory sf = null;
         Personne userToConnect = null;
         try {
-            sf = SessionFactoryDataBase.getSessionFactoryInstance(Personne.class);
+             sf = sfd.getSessionFactoryInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,11 +59,9 @@ public class LoginServlet extends HttpServlet {
         try {
             tx = mSession.beginTransaction();
             String sql = "SELECT * FROM Personne WHERE email = :email";
-            @SuppressWarnings("unchecked")
-            NativeQuery<Personne> nq = mSession.createSQLQuery(sql);
-            nq.addEntity(Personne.class);
+            NativeQuery<Personne> nq = mSession.createNativeQuery(sql, Personne.class);
             nq.setParameter("email", email);
-            userToConnect = (Personne) nq.uniqueResult();
+            userToConnect = nq.uniqueResult();
              if(userToConnect != null){
                 db_password = userToConnect.getPassword();
              }
@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         } finally {
             mSession.close();
-            sf.close();
+             
         }
         // Si l'utilisateur est inconnu dans la BDD
         if(null == userToConnect){

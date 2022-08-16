@@ -1,15 +1,23 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+ 
+ 
 
 @Entity
 public class Personne implements Serializable {
@@ -34,56 +42,53 @@ public class Personne implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
 	@Column(columnDefinition="DATETIME(3)")
 	private Date created_at = new Date();
-    
-    public Personne(){
 
-    }
+    @OneToOne
+    @JoinColumn(name = "toto")
+    private Commentaire commentaire;
+ 
+ public Date getCreated_at() {
+     return created_at;
+ }
 
-    public int getId() {
-        return id;
-    }
+ public String getEmail() {
+     return email;
+ }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+ public int getId() {
+     return id;
+ }
 
-    public String getEmail() {
-        return email;
-    }
+ public String getNom() {
+     return nom;
+ }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+ public String getPassword() {
+     return password;
+ }
 
-    public String getNom() {
-        return nom;
-    }
+ public String getPrenom() {
+     return prenom;
+  }
 
-    public String getPrenom() {
-        return prenom;
-    }
+  public void setCreated_at(Date created_at) {
+      this.created_at = created_at;
+  }
+public void setEmail(String email) {
+    this.email = email;
+}
+public void setId(int id) {
+    this.id = id;
+}
+public void setNom(String nom) {
+    this.nom = nom;
+}
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+public void setPassword(String password) {
+    this.password = password;
+}
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getCreated_at() {
-        return created_at;
-    }
-    
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
-    }
+public void setPrenom(String prenom) {
+    this.prenom = prenom;
+}
 }

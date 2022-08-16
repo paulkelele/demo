@@ -1,7 +1,9 @@
 package root;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,9 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
  
-import database.SessionFactoryDataBase;
+ import database.SessionFactoryDataBase;
 import entities.Personne;
+import entities.Commentaire;
 import security.BCrypt;
 
 @WebServlet("/inscription")
@@ -46,9 +50,11 @@ public class InscriptionServlet extends HttpServlet {
         p.setPrenom(prenom);
         p.setEmail(email);
         p.setPassword(password);
+        
+        SessionFactoryDataBase sfd = new SessionFactoryDataBase();
         SessionFactory sessionFactory = null;
         try {
-            sessionFactory = SessionFactoryDataBase.getSessionFactoryInstance(p.getClass());
+            sessionFactory = sfd.getSessionFactoryInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,6 +69,7 @@ public class InscriptionServlet extends HttpServlet {
                 tx.rollback();
             }
              messages.put("error", "Un compte est déjà associé à cet email.");
+             messages.put("error", e.getMessage());
             doGet(req, resp);
             return;
         } finally {

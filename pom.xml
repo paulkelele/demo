@@ -37,7 +37,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.5.7.Final</version>
+            <version>6.1.2.Final</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -67,6 +67,9 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+        
+
   </dependencies>
 
   <build>
