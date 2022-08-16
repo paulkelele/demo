@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import entities.Personne;
+
 @WebServlet("/settings")
 public class Settings extends HttpServlet {
 
@@ -24,7 +26,9 @@ public class Settings extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pseudo =(String)req.getParameter("pseudo");
         HttpSession _session = req.getSession();
-        _session.setAttribute("pseudo", pseudo);
+        Personne p = (Personne) _session.getAttribute("_user");
+         _session.setAttribute("pseudo", pseudo);
+        System.out.println(p.getId());
         resp.sendRedirect("acount");
         
 	}
