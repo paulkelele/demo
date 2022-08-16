@@ -6,6 +6,8 @@ if(session.getAttribute("s_id")== null){
 	response.sendRedirect("login");
 }
  %>
+ <%@page import="java.util.*,java.util.stream.*" %>
+
 <jsp:directive.include file="header2.jsp" />
 
 <div class="ml-1">
@@ -14,8 +16,8 @@ if(session.getAttribute("s_id")== null){
 	<div class="col-4 d-table-cell   p-2">
 	  Bacon ipsum dolor amet leberkas pork pig kielbasa shankle ribeye meatball, salami alcatra venison.
 	</div>
-	<!--
-	-->
+	
+	<!-- 2eme colonne -->
 	<div class="col-4 d-table-cell   p-2">
 		<form action="acount" method="post">
            <!-- <input class="form-control" type="text" name="comment" placeholder="comment" id="prenom"> -->
@@ -24,11 +26,27 @@ if(session.getAttribute("s_id")== null){
 		   <button class="btn mt-1" style="color:yellow ;" type="submit">
 				Enregistrer</button>
         </form>
-	  Pork chop cupim cow turkey frankfurter, landjaeger fatback hamburger meatball salami spare ribs. Rump tenderloin
-	  salami, hamburger frankfurter landjaeger andouille.
+	   ....
+	   <form action="test" method="post">
+	    <input class="form-control" type="text" name="feel" placeholder="comment" id="prenom">
+		<button class="btn mt-1" style="color:yellow ;" type="submit">
+			Enregistrer</button>
+	   </form>
+	   <%
+	   List<String> commentaire = (ArrayList<String>) session.getAttribute("commentaire");
+	   if(null != commentaire){
+		for(String c:commentaire){
+			%>
+			<div>${c}</div>
+			<%
+		}
+	   }
+		%>
+		
+			 
 	</div>
-	<!--
-	-->
+
+	<!-- 3eme colonne -->
 	<div class="col-4 d-table-cell   p-2">
 		
 	  Brisket tongue frankfurter cupim strip steak rump picanha pancetta pork pig kevin pastrami biltong. Shankle venison

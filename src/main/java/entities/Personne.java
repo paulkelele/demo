@@ -49,7 +49,7 @@ public class Personne   {
         mappedBy = "personne", 
         cascade = CascadeType.ALL, 
         orphanRemoval = true, 
-        fetch = FetchType.EAGER)
+        fetch = FetchType.LAZY)
     private List<Commentaire> commentaire = new ArrayList<>();
   
 }
