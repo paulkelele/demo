@@ -1,7 +1,7 @@
 package root;
 
 import java.io.IOException;
- import java.util.HashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import database.SessionFactoryDataBase;
 import entities.Personne;
- import security.BCrypt;
+import security.BCrypt;
 
 @WebServlet("/inscription")
 public class InscriptionServlet extends HttpServlet {
@@ -26,7 +28,7 @@ public class InscriptionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, String> messages = new HashMap<String, String>();
         req.setAttribute("messages", messages);
-        
+
         String email = req.getParameter("email");
         email = email.toLowerCase();
         String password = req.getParameter("password");
@@ -36,14 +38,13 @@ public class InscriptionServlet extends HttpServlet {
         // Encode password via BCrypt
         password = BCrypt.hashpw(password, BCrypt.gensalt());
 
-
         req.setAttribute("email", email);
         Personne p = new Personne();
         p.setNom(nom);
         p.setPrenom(prenom);
         p.setEmail(email);
         p.setPassword(password);
-        
+
         SessionFactoryDataBase sfd = new SessionFactoryDataBase();
         SessionFactory sessionFactory = null;
         try {
@@ -57,12 +58,12 @@ public class InscriptionServlet extends HttpServlet {
             tx = session.beginTransaction();
             session.persist(p);
             tx.commit();
-        } catch ( Exception  e) {
+        } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
-             messages.put("error", "Un compte est déjà associé à cet email.");
-             messages.put("error", e.getMessage());
+            messages.put("error", "Un compte est déjà associé à cet email.");
+            messages.put("error", e.getMessage());
             doGet(req, resp);
             return;
         } finally {

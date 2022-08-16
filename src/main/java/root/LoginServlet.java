@@ -25,21 +25,18 @@ import java.util.Map;
 public class LoginServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-    {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-    {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, String> messages = new HashMap<String, String>();
         req.setAttribute("messages", messages);
         String email = req.getParameter("email");
         email = email.toLowerCase();
         String password = req.getParameter("password");
-        if (password.trim().isEmpty() || email.trim().isEmpty()) 
-        {
+        if (password.trim().isEmpty() || email.trim().isEmpty()) {
             messages.put("error", "Les champs Email et Mot de passe doivent être renseignés.");
             doGet(req, resp);
             return;
@@ -48,17 +45,14 @@ public class LoginServlet extends HttpServlet {
         SessionFactoryDataBase sfd = new SessionFactoryDataBase();
         SessionFactory sf = null;
         Personne userToConnect = null;
-        try 
-        {
+        try {
             sf = sfd.getSessionFactoryInstance();
-        } catch (Exception e) 
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Session mSession = sf.openSession();
         Transaction tx = null;
-        try 
-        {
+        try {
             tx = mSession.beginTransaction();
             String sql = "SELECT * FROM Personne WHERE email = :email";
             NativeQuery<Personne> nq = mSession.createNativeQuery(sql, Personne.class);
@@ -68,30 +62,26 @@ public class LoginServlet extends HttpServlet {
                 db_password = userToConnect.getPassword();
             }
             tx.commit();
-        } catch (HibernateException e) 
-        {
+        } catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();
             e.printStackTrace();
-        } finally 
-        {
+        } finally {
             mSession.close();
             sf.close();
         }
         // Si l'utilisateur est inconnu dans la BDD
-        if (null == userToConnect) 
-        {
+        if (null == userToConnect) {
             messages.put("error", "Identifiant inconnus. Veuillez vous enregistrer");
             doGet(req, resp);
             return;
         }
-        if (!db_password.isEmpty()) 
-        {
+        if (!db_password.isEmpty()) {
             // Decrypte password via BCrypt
             boolean res = BCrypt.checkpw(password, db_password);
             if (res == true) {
                 HttpSession _session = req.getSession();
-                 _session.setAttribute("_user", userToConnect);
+                _session.setAttribute("_user", userToConnect);
                 resp.sendRedirect("acount");
             } else {
                 messages.put("error", "Identification incorrecte");
