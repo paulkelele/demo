@@ -1,8 +1,8 @@
 package entities;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,16 +14,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
  
  
 
 @Entity
-@Data @NoArgsConstructor @ToString
-public class Personne   {
+ public class Personne   {
  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,5 +47,68 @@ public class Personne   {
         orphanRemoval = true, 
         fetch = FetchType.LAZY)
     private List<Commentaire> commentaire = new ArrayList<>();
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+
+	public List<Commentaire> getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(List<Commentaire> commentaire) {
+		this.commentaire = commentaire;
+	}
+
+	@Override
+	public String toString() {
+		return "Personne [id=" + id + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", password="
+				+ password + ", created_at=" + created_at + ", commentaire=" + commentaire + "]";
+	}
   
+    
 }

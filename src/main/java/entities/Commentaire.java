@@ -6,14 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 @Entity
-@Data
-@NoArgsConstructor
-@ToString
 public class Commentaire {
 
     @Id
@@ -24,4 +17,38 @@ public class Commentaire {
 
     @ManyToOne
     private Personne personne;
+    
+    public Commentaire() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUncommentaire() {
+		return uncommentaire;
+	}
+
+	public void setUncommentaire(String uncommentaire) {
+		this.uncommentaire = uncommentaire;
+	}
+
+	public Personne getPersonne() {
+		return personne;
+	}
+
+	public void setPersonne(Personne personne) {
+		this.personne = personne;
+	}
+
+	@Override
+	public String toString() {
+		return "Commentaire [id=" + id + ", uncommentaire=" + uncommentaire + ", personne=" + personne + "]";
+	}
+    
 }
