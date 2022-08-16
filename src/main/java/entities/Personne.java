@@ -106,6 +106,12 @@ import jakarta.persistence.TemporalType;
 	public void setCommentaire(Collection<Commentaire> commentaire) {
 		this.commentaire = commentaire;
 	}
+
+	@Override
+	public String toString() {
+		return "Personne [id=" + id + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", password="
+				+ password + ", created_at=" + created_at + ", commentaire=" + commentaire + "]";
+	}
     
          
      

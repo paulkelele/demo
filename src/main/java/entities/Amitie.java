@@ -14,11 +14,7 @@ public class Amitie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
- 	
-	 
-	 
-	
+		
 	private int status;
 	
 	private Date date;

@@ -19,7 +19,7 @@ public class SessionFactoryDataBase {
     InputStream inputStream = SessionFactoryDataBase.class.getResourceAsStream("../hibernate.properties");
 
     Properties hibernateProperties = new Properties();
-    hibernateProperties.load(inputStream);
+    hibernateProperties.load(inputStream); 
 
     Configuration configuration = new Configuration();
     configuration.setProperties(hibernateProperties);
@@ -30,8 +30,7 @@ public class SessionFactoryDataBase {
     .addAnnotatedClass(Amitie.class)
      ;
      
-//    configuration.addAnnotatedClass(Amitie.class);
-    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties())
+     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties())
         .build();
     SessionFactory sf = configuration.buildSessionFactory(serviceRegistry);
     return sf;
@@ -40,29 +39,5 @@ public class SessionFactoryDataBase {
   public SessionFactory getSessionFactoryInstance() throws Exception {
     return configureSessionFactory();
   }
-
-  // public  SessionFactory getCurrentSession() throws IOException {
-  //   Configuration configuration = new Configuration();
-  //   Properties settings = new Properties();
-  //   settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-  //   settings.put(Environment.URL, "jdbc:mysql://localhost:3306/jsp?serverTimezone=Europe/Paris");
-  //   settings.put(Environment.USER, "root");
-  //   settings.put(Environment.PASS, "cerise");
-  //   settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
-  //    settings.put(Environment.SHOW_SQL, "true");
-
-  //   settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-
-     
-
-  //   configuration.setProperties(settings);
-  //   configuration.addAnnotatedClass(Personne.class); //sınıflar bu şekilde eklenecek.
-  //   configuration.addAnnotatedClass(Commentaire.class); //sınıflar bu şekilde eklenecek.
-
-  //   ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-  //     .applySettings(configuration.getProperties()).build();
-  //    SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-  //   return sessionFactory;
-  // }
-
+ 
 }

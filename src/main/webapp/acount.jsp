@@ -43,10 +43,9 @@ if(session.getAttribute("s_id")== null){
 					<%= com %>
 					</li>
 				</ul>
-			
 			</div>
 			<%
-		}
+		 }
 	   }
 		%>
 		

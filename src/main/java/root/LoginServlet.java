@@ -55,14 +55,18 @@ public class LoginServlet extends HttpServlet {
         Transaction tx = null;
         try {
             tx = mSession.beginTransaction();
-            String sql = "SELECT * FROM Personne WHERE email = :email";
-            NativeQuery<Personne> nq = mSession.createNativeQuery(sql, Personne.class);
-            nq.setParameter("email", email);
-            userToConnect = nq.uniqueResult();
+            userToConnect = mSession.createQuery("select p from Personne p where p.email =: email", Personne.class)
+            .setParameter("email", email).getSingleResult();
+//            System.out.println(userToConnect.toString());
+//            String sql = "SELECT * FROM Personne WHERE email = :email";
+//             NativeQuery<Personne> nq = mSession.createNativeQuery(sql, Personne.class);
+//            nq.setParameter("email", email);
+//            userToConnect = nq.uniqueResult();
             if (userToConnect != null) {
                 db_password = userToConnect.getPassword();
             }
             tx.commit();
+           
         } catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();
