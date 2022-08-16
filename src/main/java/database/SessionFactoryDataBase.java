@@ -2,19 +2,11 @@ package database;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
-
 import entities.Commentaire;
 import entities.Personne;
 
@@ -36,7 +28,7 @@ public class SessionFactoryDataBase {
     return sf;
   }
 
-  public   SessionFactory getSessionFactoryInstance(  ) throws Exception {
+  public SessionFactory getSessionFactoryInstance() throws Exception {
     return configureSessionFactory();
   }
 

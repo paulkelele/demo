@@ -1,9 +1,7 @@
 package root;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,16 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
- 
- import database.SessionFactoryDataBase;
 import entities.Personne;
-import entities.Commentaire;
-import security.BCrypt;
+ import security.BCrypt;
 
 @WebServlet("/inscription")
 public class InscriptionServlet extends HttpServlet {
