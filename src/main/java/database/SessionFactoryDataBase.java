@@ -3,10 +3,13 @@ package database;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import entities.Amitie;
 import entities.Commentaire;
 import entities.Personne;
 
@@ -20,8 +23,14 @@ public class SessionFactoryDataBase {
 
     Configuration configuration = new Configuration();
     configuration.setProperties(hibernateProperties);
-    configuration.addAnnotatedClass(Personne.class);
-    configuration.addAnnotatedClass(Commentaire.class);
+    configuration.addPackage("entities");
+    configuration
+    .addAnnotatedClass(Personne.class)
+    .addAnnotatedClass(Commentaire.class)
+    .addAnnotatedClass(Amitie.class)
+     ;
+     
+//    configuration.addAnnotatedClass(Amitie.class);
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties())
         .build();
     SessionFactory sf = configuration.buildSessionFactory(serviceRegistry);

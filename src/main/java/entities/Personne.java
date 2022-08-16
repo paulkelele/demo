@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Collection;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -46,7 +47,9 @@ import jakarta.persistence.TemporalType;
         cascade = CascadeType.ALL, 
         orphanRemoval = true, 
         fetch = FetchType.LAZY)
-    private List<Commentaire> commentaire = new ArrayList<>();
+    private Collection<Commentaire> commentaire = new ArrayList<>();
+    
+     
 
 	public int getId() {
 		return id;
@@ -96,19 +99,21 @@ import jakarta.persistence.TemporalType;
 		this.created_at = created_at;
 	}
 
-	public List<Commentaire> getCommentaire() {
+	public Collection<Commentaire> getCommentaire() {
 		return commentaire;
 	}
 
-	public void setCommentaire(List<Commentaire> commentaire) {
+	public void setCommentaire(Collection<Commentaire> commentaire) {
 		this.commentaire = commentaire;
 	}
+    
+         
+     
+    
+ 
 
-	@Override
-	public String toString() {
-		return "Personne [id=" + id + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", password="
-				+ password + ", created_at=" + created_at + ", commentaire=" + commentaire + "]";
-	}
-  
+	 
+ 
+ 
     
 }
