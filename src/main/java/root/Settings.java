@@ -34,10 +34,14 @@ public class Settings extends HttpServlet {
 		HttpSession _session = req.getSession();
 		Map<String, String> messagesFromSettings = new HashMap<String, String>();
 	        _session.setAttribute("messagesFromSettings", messagesFromSettings);
-			messagesFromSettings.put("ok", "Pseudo enregistré");
 		String pseudo =(String)req.getParameter("pseudo");
         
         if(null != pseudo) {
+			if(pseudo.isEmpty()){
+				messagesFromSettings.put("error", "Pseudo vide");
+				resp.sendRedirect("acount");
+				return;
+			}
         	Personne p = (Personne) _session.getAttribute("_user");
         	if(null != p) {
          		SessionFactoryDataBase sfd = new SessionFactoryDataBase();
@@ -74,7 +78,8 @@ public class Settings extends HttpServlet {
         }else {
         	messagesFromSettings.put("error", "Un pseudo doit etre renseigné");
         }
-        	
+		messagesFromSettings.put("ok", "Pseudo enregistré");
+
          resp.sendRedirect("acount");
         
 	}

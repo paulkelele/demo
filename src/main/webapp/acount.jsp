@@ -6,13 +6,11 @@ if(session.getAttribute("s_id")== null){
 	response.sendRedirect("login");
 }
  %>
- <%@page import="java.util.*,java.util.stream.*" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
-<jsp:directive.include file="header2.jsp" />
-
+ <%@page import="java.util.*" %>
  
-<div class="d-table col-12">
+<jsp:directive.include file="header2.jsp" />
+ 
+ <div class="d-table col-12">
   <div class="col-4 d-table-cell border p-2">
 		<form action="settings" method="post">
 	    	<input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" id="pseudo">
