@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
 import database.SessionFactoryDataBase;
@@ -27,8 +26,7 @@ public class Settings extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+ 		super.doGet(req, resp);
 	}
 	
 	@Override
@@ -55,8 +53,7 @@ public class Settings extends HttpServlet {
  
                 	 // save the student object
                     String hql = "UPDATE Personne set pseudo = :pseudo " + "WHERE id = :id";
-                    @SuppressWarnings("deprecation")
-					Query query = mSession.createQuery(hql);
+ 					Query query = mSession.createQuery(hql);
                     query.setParameter("pseudo", pseudo);
                     query.setParameter("id", p.getId());
                     int result = query.executeUpdate();
