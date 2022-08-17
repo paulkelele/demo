@@ -33,7 +33,8 @@ public class Settings extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession _session = req.getSession();
 		Map<String, String> messagesFromSettings = new HashMap<String, String>();
-	        _session.setAttribute("messages", messagesFromSettings);
+	        _session.setAttribute("messagesFromSettings", messagesFromSettings);
+			messagesFromSettings.put("ok", "Pseudo enregistré");
 		String pseudo =(String)req.getParameter("pseudo");
         
         if(null != pseudo) {
@@ -50,9 +51,8 @@ public class Settings extends HttpServlet {
                 Transaction tx = null;
                 try {
                 	tx = mSession.beginTransaction();
- 
-                	 // save the student object
-                    String hql = "UPDATE Personne set pseudo = :pseudo " + "WHERE id = :id";
+  
+                    String hql = "UPDATE Personne set pseudo = :pseudo  WHERE id = :id";
  					Query query = mSession.createQuery(hql);
                     query.setParameter("pseudo", pseudo);
                     query.setParameter("id", p.getId());
@@ -74,11 +74,8 @@ public class Settings extends HttpServlet {
         }else {
         	messagesFromSettings.put("error", "Un pseudo doit etre renseigné");
         }
-        messagesFromSettings.put("ok", "Pseudo enregistré");
-        
-         _session.setAttribute("pseudo", pseudo);
-         
-        resp.sendRedirect("acount");
+        	
+         resp.sendRedirect("acount");
         
 	}
 	
