@@ -1,25 +1,23 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Collection;
+import java.util.Date;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
  
  
 
-@Entity
+@javax.persistence.Entity
  public class Personne   {
  
     @Id
@@ -49,7 +47,8 @@ import jakarta.persistence.TemporalType;
         fetch = FetchType.LAZY)
     private Collection<Commentaire> commentaire = new ArrayList<>();
     
-     
+    @Column(length = 50)
+    private String pseudo;
 
 	public int getId() {
 		return id;
@@ -107,12 +106,21 @@ import jakarta.persistence.TemporalType;
 		this.commentaire = commentaire;
 	}
 
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
 	@Override
 	public String toString() {
 		return "Personne [id=" + id + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", password="
-				+ password + ", created_at=" + created_at + ", commentaire=" + commentaire + "]";
+				+ password + ", created_at=" + created_at + ", commentaire=" + commentaire + ", pseudo=" + pseudo + "]";
 	}
-    
+
+	 
          
      
     

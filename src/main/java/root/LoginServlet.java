@@ -43,9 +43,9 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         String db_password = "";
+        Personne userToConnect = null;
         SessionFactoryDataBase sfd = new SessionFactoryDataBase();
         SessionFactory sf = null;
-        Personne userToConnect = null;
         try {
             sf = sfd.getSessionFactoryInstance();
         } catch (Exception e) {
@@ -67,11 +67,15 @@ public class LoginServlet extends HttpServlet {
             }
             tx.commit();
            
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (tx != null)
                 tx.rollback();
-            e.printStackTrace();
-        } finally {
+            messages.put("error", "Identifiant inconnus. Veuillez vous enregistrer");
+            mSession.close();
+            sf.close();
+            doGet(req, resp);       
+            return;
+            } finally {
             mSession.close();
             sf.close();
         }
