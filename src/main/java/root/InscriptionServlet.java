@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +22,16 @@ import entities.Personne;
 import security.BCrypt;
 
 @WebServlet("/inscription")
-public class InscriptionServlet extends HttpServlet {
+public class InscriptionServlet extends HttpServlet implements Filter{
+
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+         
+        
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("inscription.jsp").forward(req, resp);
@@ -72,4 +85,6 @@ public class InscriptionServlet extends HttpServlet {
          messages.put("ok", "Votre compte a bien été créé.");
         doGet(req, resp);
     }
+
+   
 }

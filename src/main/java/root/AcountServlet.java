@@ -2,7 +2,11 @@ package root;
 
 import java.io.IOException;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +22,17 @@ import entities.Commentaire;
 import entities.Personne;
 
 @WebServlet("/acount")
-public class AcountServlet extends HttpServlet{
+public class AcountServlet extends HttpServlet implements Filter{
   Personne p = null;
+  
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+          chain.doFilter(request, response);
+    }
+  
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       HttpSession _session = req.getSession();
       
       if(null != _session.getAttribute("_user")){
@@ -66,4 +77,5 @@ public class AcountServlet extends HttpServlet{
       }
       doGet(req, resp);
     }
+
 }
