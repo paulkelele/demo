@@ -22,17 +22,9 @@ import entities.Personne;
 import security.BCrypt;
 
 @WebServlet("/inscription")
-public class InscriptionServlet extends HttpServlet implements Filter{
+public class InscriptionServlet extends HttpServlet{
 
-
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-         
-        
-    }
-
-    @Override
+     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("inscription.jsp").forward(req, resp);
     }
