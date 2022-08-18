@@ -11,27 +11,31 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@WebFilter("/inscriptionFilter")
+@WebFilter(servletNames = "inscription")
 public class InscriptionFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // TODO Auto-generated method stub
+ 
         Filter.super.init(filterConfig);
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-                String password =  request.getParameter("password");
+                HttpServletRequest req = (HttpServletRequest) request;
+                HttpServletResponse resp = (HttpServletResponse) response;
+                String password =  req.getParameter("password");
                 if(password.length()<4){
                     Map<String, String> messages = new HashMap<String, String>();
-                    request.setAttribute("messages", messages);
+                    req.setAttribute("messages", messages);
                     messages.put("error", "message trop court");
-                    request.getRequestDispatcher("inscription.jsp").forward(request, response);
-                     
+                    resp.sendRedirect("inscription");
+                    return;
                 }else{
-                    chain.doFilter(request, response); 
+                    chain.doFilter(req, resp); 
                 }
         
     }

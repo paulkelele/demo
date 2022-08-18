@@ -15,7 +15,6 @@
         <% Map<String, String> messages = (Map<String, String>)request.getAttribute("messages");
                 if(messages != null){
                             if(messages.containsKey("error")){
-
                 %>
                 <div class="flash mt-3 flash-warn" style="width: fit-content;">
                     <svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
