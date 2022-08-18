@@ -13,6 +13,8 @@ if(session.getAttribute("s_id")== null){
  <div class="d-table col-12">
   <div class="col-4 d-table-cell border p-2">
 		<form action="settings" method="post">
+			<span style="font-size:22px;vertical-align: bottom;">@</span>
+
 	    	<input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" id="pseudo">
 			<button class="btn mt-1" style="color:yellow ;" type="submit">
 				Enregistrer</button>

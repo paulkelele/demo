@@ -19,7 +19,6 @@ public class Commentaire {
     private Personne personne;
     
     public Commentaire() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
