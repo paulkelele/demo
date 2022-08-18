@@ -40,7 +40,7 @@ public class InscriptionServlet extends HttpServlet{
         String nom = req.getParameter("nom");
         String prenom = req.getParameter("prenom");
         if(password.length()<= 4) {
-        	messages.put("error", "Le mote de passe doit contenir au moins 5 caracteres");
+        	messages.put("error", "Le mote de passe doit contenir au moins 5 caractères");
         	doGet(req, resp);
         	return;
         }

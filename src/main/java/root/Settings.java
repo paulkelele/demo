@@ -41,7 +41,7 @@ public class Settings extends HttpServlet {
 			resp.sendRedirect("login");
 			return;
 		}
-		Map<String, String> messagesFromSettings = new HashMap<String, String>();
+		final Map<String, String> messagesFromSettings = new HashMap<>();
 	        _session.setAttribute("messagesFromSettings", messagesFromSettings);
 		String pseudo =(String)req.getParameter("pseudo");
         
@@ -67,7 +67,7 @@ public class Settings extends HttpServlet {
   
                     String hql = "UPDATE Personne set pseudo = :pseudo  WHERE id = :id";
  					Query query = mSession.createQuery(hql);
-                    query.setParameter("pseudo", pseudo);
+                    query.setParameter("pseudo", "@"+pseudo);
                     query.setParameter("id", p.getId());
                     int result = query.executeUpdate();
                     System.out.println("Rows affected: " + result);
