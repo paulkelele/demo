@@ -26,12 +26,21 @@ public class Settings extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
- 		super.doGet(req, resp);
+		HttpSession _session = req.getSession(false);
+		if(null == _session){
+			resp.sendRedirect("login");
+			return;
+		}
+		super.doGet(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession _session = req.getSession();
+		HttpSession _session = req.getSession(false);
+		if(null == _session){
+			resp.sendRedirect("login");
+			return;
+		}
 		Map<String, String> messagesFromSettings = new HashMap<String, String>();
 	        _session.setAttribute("messagesFromSettings", messagesFromSettings);
 		String pseudo =(String)req.getParameter("pseudo");

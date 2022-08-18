@@ -1,5 +1,6 @@
 <%@page import="java.util.*"%>
 <jsp:directive.include file="header.jsp" />
+ <jsp:directive.page session="false" />
 
 <div class="ml-3">
 	<h3>Se connecter</h3>

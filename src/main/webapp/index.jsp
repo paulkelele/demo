@@ -1,5 +1,6 @@
  <jsp:directive.include file="header.jsp" />
- <div class="ml-3">
+ <jsp:directive.page session="false" />
+  <div class="ml-3">
  <h3>Accueil</h3>
  </div>
 
