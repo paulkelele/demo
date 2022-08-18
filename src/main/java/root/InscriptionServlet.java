@@ -21,7 +21,7 @@ import database.SessionFactoryDataBase;
 import entities.Personne;
 import security.BCrypt;
 
-@WebServlet("/inscription")
+@WebServlet(name = "inscription",value = "/inscription")
 public class InscriptionServlet extends HttpServlet{
 
      @Override
@@ -39,7 +39,11 @@ public class InscriptionServlet extends HttpServlet{
         String password = req.getParameter("password");
         String nom = req.getParameter("nom");
         String prenom = req.getParameter("prenom");
-
+        if(password.length()<= 4) {
+        	messages.put("error", "Le mote de passe doit contenir au moins 5 caracteres");
+        	doGet(req, resp);
+        	return;
+        }
         // Encode password via BCrypt
         password = BCrypt.hashpw(password, BCrypt.gensalt());
 

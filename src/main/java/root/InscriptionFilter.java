@@ -25,18 +25,7 @@ public class InscriptionFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-                HttpServletRequest req = (HttpServletRequest) request;
-                HttpServletResponse resp = (HttpServletResponse) response;
-                String password =  req.getParameter("password");
-                if(password.length()<4){
-                    Map<String, String> messages = new HashMap<String, String>();
-                    req.setAttribute("messages", messages);
-                    messages.put("error", "message trop court");
-                    resp.sendRedirect("inscription");
-                    return;
-                }else{
-                    chain.doFilter(req, resp); 
-                }
-        
+    		System.out.println("DDDDDDDDD");
+            chain.doFilter(request, response); 
     }
 }
