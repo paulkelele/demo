@@ -1,52 +1,47 @@
 package entities;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
  
 @Entity
 public class Amitie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+ 	private int user_id;
+
+	@Id
+	private int friend_id;
 		
-	private int status;
+	private char status;
 	
-	private Date date;
-	
+	private Personne personne;
+ 	
 	public Amitie() {
  	}
 
-	public int getId() {
-		return id;
+	
+	public int getFriend_id() {
+		return friend_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setFriend_id(int friend_id) {
+		this.friend_id = friend_id;
 	}
 
+	public int getUser_id() {
+		return user_id;
+	}
  
-
-	public int getStatus() {
-		return status;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
+	 public char getStatus() {
+		 return status;
+	 }
 	 
+	 public void setStatus(char status) {
+		 this.status = status;
+	 }
 
 }

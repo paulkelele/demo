@@ -47,7 +47,7 @@ import javax.persistence.TemporalType;
         fetch = FetchType.LAZY)
     private Collection<Commentaire> commentaire = new ArrayList<>();
     
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String pseudo;
 
 	public int getId() {
