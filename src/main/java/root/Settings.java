@@ -11,18 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-
-import database.SessionFactoryDataBase;
-import entities.Personne;
+ import entities.User;
+import entities.implementations.UserImplementation;
 
 @WebServlet("/settings")
 public class Settings extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+
+	 
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,46 +48,27 @@ public class Settings extends HttpServlet {
 				resp.sendRedirect("acount");
 				return;
 			}
-        	Personne p = (Personne) _session.getAttribute("_user");
-        	if(null != p) {
-         		SessionFactoryDataBase sfd = new SessionFactoryDataBase();
-                SessionFactory sf = null;
-                try {
-                    sf = sfd.getSessionFactoryInstance();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Session mSession = sf.openSession();
-                Transaction tx = null;
-                try {
-                	tx = mSession.beginTransaction();
-  
-                    String hql = "UPDATE Personne set pseudo = :pseudo  WHERE id = :id";
- 					Query query = mSession.createQuery(hql);
-                    query.setParameter("pseudo", "@"+pseudo);
-                    query.setParameter("id", p.getId());
-                    int result = query.executeUpdate();
-                    System.out.println("Rows affected: " + result);
-                	tx.commit(); 
-                }catch (Exception e) { 
-                	if (tx != null) 
-                        tx.rollback();
-                	messagesFromSettings.put("error", "enregistrement invalide");
-                    e.printStackTrace();
-				}finally {
-					mSession.close();
-		            sf.close();
+        	User u = (User) _session.getAttribute("_user");
+        	if(null != u) {
+				UserImplementation ui = new UserImplementation();
+				try {
+					 ui.UpdatePseudo(pseudo, u.getId());
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
         	}else {
-        		messagesFromSettings.put("error", "session invalide");
-        	}
-        }else {
-        	messagesFromSettings.put("error", "Un pseudo doit etre renseigné");
-        }
+        	messagesFromSettings.put("error", "Session invalide");
+			resp.sendRedirect("login");
+			return;
+			}
+        	 
+		}else{
+			messagesFromSettings.put("error", "Impossible d'enregistrer le pseudo");
+			resp.sendRedirect("acount");
+			return;
+		}
 		messagesFromSettings.put("ok", "Pseudo enregistré");
-
-         resp.sendRedirect("acount");
-        
+ 		resp.sendRedirect("acount");
 	}
 	
 }

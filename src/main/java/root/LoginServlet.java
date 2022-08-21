@@ -45,7 +45,6 @@ public class LoginServlet extends HttpServlet {
         }
         String db_password = "";
         User u = new User();
-
         try{
             UserImplementation ui = new UserImplementation();
             u = ui.LoginUserByEmail(email);

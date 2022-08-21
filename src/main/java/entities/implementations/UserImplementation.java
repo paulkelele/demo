@@ -34,7 +34,7 @@ public class UserImplementation implements IUser {
     @Override
     public User LoginUserByEmail(String email) throws SQLException {
         User u = new User();
-         Connection con = SingletonConnection.getConnection();
+        Connection con = SingletonConnection.getConnection();
         String sql = "SELECT * from user WHERE email = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, email);
@@ -51,5 +51,19 @@ public class UserImplementation implements IUser {
         
         return u;
     }
+
+    @Override
+    public void UpdatePseudo(String pseudo, int id) throws SQLException {
+        Connection con = SingletonConnection.getConnection();
+        String sql = "UPDATE user set pseudo = ?  WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, pseudo);
+        ps.setInt(2, id);
+         ps.executeUpdate();
+        
+        
+    }
+
+    
     
 }
