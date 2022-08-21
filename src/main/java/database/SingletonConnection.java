@@ -9,9 +9,12 @@ public class SingletonConnection {
     static{
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://${MYSQL_HOST:localhost}:3306/jsp?serverTimezone=Europe/Paris");
+            String urlConnection = "jdbc:mysql://localhost:3306/tada?serverTimezone=Europe/Paris";
+            String user="root";
+            String password="cerise";
+            connection = DriverManager.getConnection(urlConnection, user, password);
         } catch (Exception e) {
-            e.getMessage();
+            e.printStackTrace();
         }
     }
     public static Connection getConnection() {

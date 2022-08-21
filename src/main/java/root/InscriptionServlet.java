@@ -1,6 +1,9 @@
 package root;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +18,8 @@ import org.hibernate.Transaction;
 
 import database.SessionFactoryDataBase;
 import entities.Personne;
+import entities.User;
+import entities.implementations.UserImplementation;
 import security.BCrypt;
 
 @WebServlet(name = "inscription",value = "/inscription")
@@ -49,31 +54,53 @@ public class InscriptionServlet extends HttpServlet{
         p.setPrenom(prenom);
         p.setEmail(email);
         p.setPassword(password);
-
-        SessionFactoryDataBase sfd = new SessionFactoryDataBase();
-        SessionFactory sessionFactory = null;
+        
+        // new version
+        User u = new User();
+        u.setFirstName(nom);
+        u.setLastName(prenom);
+        u.setEmail(email);
+        u.setPassword(password);
+        u.setCreated_at(new Date(System.currentTimeMillis()));
+        UserImplementation ui = new UserImplementation();
+        int i = 0;
         try {
-            sessionFactory = sfd.getSessionFactoryInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.persist(p);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            messages.put("error", "Un compte est déjà associé à cet email.");
+            i = ui.AjouterUser(u);
+        } catch (SQLException e) {
+            String messageErreur = "";
+               if(e instanceof SQLIntegrityConstraintViolationException){
+                messageErreur="Email déja utilise";
+               }
+                messages.put("error", messageErreur);
              doGet(req, resp);
             return;
-        } finally {
-            session.close();
-            sessionFactory.close();
+             
         }
+        System.out.println("Nombre enregistrement: "+i);
+        // SessionFactoryDataBase sfd = new SessionFactoryDataBase();
+        // SessionFactory sessionFactory = null;
+        // try {
+        //     sessionFactory = sfd.getSessionFactoryInstance();
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+        // Session session = sessionFactory.openSession();
+        // Transaction tx = null;
+        // try {
+        //     tx = session.beginTransaction();
+        //     session.persist(p);
+        //     tx.commit();
+        // } catch (Exception e) {
+        //     if (tx != null) {
+        //         tx.rollback();
+        //     }
+        //     messages.put("error", "Un compte est déjà associé à cet email.");
+        //      doGet(req, resp);
+        //     return;
+        // } finally {
+        //     session.close();
+        //     sessionFactory.close();
+        // }
          messages.put("ok", "Votre compte a bien été créé.");
         doGet(req, resp);
     }
