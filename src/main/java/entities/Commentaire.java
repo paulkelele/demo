@@ -1,25 +1,13 @@
 package entities;
+ 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-@Entity
-public class Commentaire {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+ public class Commentaire {
+ 
     private int id;
 
-    private String uncommentaire;
+    private String texte;
 
-    @ManyToOne
-    private Personne personne;
-    
-    public Commentaire() {
-	}
+    private int user_id;
 
 	public int getId() {
 		return id;
@@ -29,25 +17,19 @@ public class Commentaire {
 		this.id = id;
 	}
 
-	public String getUncommentaire() {
-		return uncommentaire;
+	public String getTexte() {
+		return texte;
 	}
 
-	public void setUncommentaire(String uncommentaire) {
-		this.uncommentaire = uncommentaire;
+	public void setTexte(String texte) {
+		this.texte = texte;
+	}
+	
+	public int getUser_id() {
+		return user_id;
 	}
 
-	public Personne getPersonne() {
-		return personne;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
-
-	public void setPersonne(Personne personne) {
-		this.personne = personne;
-	}
-
-	@Override
-	public String toString() {
-		return "Commentaire [id=" + id + ", uncommentaire=" + uncommentaire + ", personne=" + personne + "]";
-	}
-    
 }

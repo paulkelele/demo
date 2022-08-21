@@ -1,6 +1,7 @@
 package root;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class Settings extends HttpServlet {
 			return;
 		}
 		final Map<String, String> messagesFromSettings = new HashMap<>();
-	        _session.setAttribute("messagesFromSettings", messagesFromSettings);
+ 	        _session.setAttribute("messagesFromSettings", messagesFromSettings);
 		String pseudo =(String)req.getParameter("pseudo");
         
         if(null != pseudo) {
@@ -53,11 +54,13 @@ public class Settings extends HttpServlet {
 				UserImplementation ui = new UserImplementation();
 				try {
 					 ui.UpdatePseudo(pseudo, u.getId());
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (SQLException e){
+					messagesFromSettings.put("error", e.getMessage());
+					resp.sendRedirect("acount");
+					return;
 				}
         	}else {
-        	messagesFromSettings.put("error", "Session invalide");
+ 			req.setAttribute("message", "Session Invalide");
 			resp.sendRedirect("login");
 			return;
 			}
