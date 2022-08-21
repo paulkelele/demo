@@ -59,33 +59,7 @@ public class AcountServlet extends HttpServlet implements Filter{
         }
 
        }
-      //   Commentaire cm = new Commentaire();
-      //   cm.setUncommentaire(comment);
-      //   cm.setPersonne(u);
-      //   SessionFactoryDataBase sfd = new SessionFactoryDataBase();
-      //   SessionFactory sessionFactory = null;
-      //   try {
-      //       sessionFactory = sfd.getSessionFactoryInstance();
-      //   } catch (Exception e) {
-      //       e.printStackTrace();
-      //   }
-      //   Session session = sessionFactory.openSession();
-      //   Transaction tx = null;
-      //   try {
-      //       tx = session.beginTransaction();
-      //       session.persist(cm);
-      //       tx.commit();
-      //   } catch (Exception e) {
-      //       if (tx != null) {
-      //           tx.rollback();
-      //       }
-             
-      //   } finally {
-      //       session.close();
-      //       sessionFactory.close();
-      //   }
-        
-      // }
+       
       doGet(req, resp);
     }
 

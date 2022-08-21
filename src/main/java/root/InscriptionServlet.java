@@ -12,12 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
-import database.SessionFactoryDataBase;
-import entities.Personne;
+ 
+ 
 import entities.User;
 import entities.implementations.UserImplementation;
 import security.BCrypt;
@@ -49,11 +45,6 @@ public class InscriptionServlet extends HttpServlet{
         password = BCrypt.hashpw(password, BCrypt.gensalt());
 
         req.setAttribute("email", email);
-        Personne p = new Personne();
-        p.setNom(nom);
-        p.setPrenom(prenom);
-        p.setEmail(email);
-        p.setPassword(password);
         
         // new version
         User u = new User();
