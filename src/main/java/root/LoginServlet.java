@@ -1,6 +1,7 @@
 package root;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ import org.hibernate.Transaction;
 
 import database.SessionFactoryDataBase;
 import entities.Personne;
+import entities.User;
+import entities.implementations.UserImplementation;
 import security.BCrypt;
 
 @WebServlet("/login")
@@ -41,54 +44,21 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         String db_password = "";
-        Personne userToConnect = null;
-        SessionFactoryDataBase sfd = new SessionFactoryDataBase();
-        SessionFactory sf = null;
-        try {
-            sf = sfd.getSessionFactoryInstance();
-        } catch (Exception e) {
+        User u = new User();
+
+        try{
+            UserImplementation ui = new UserImplementation();
+            u = ui.LoginUserByEmail(email);
+        }catch(SQLException e){
             e.printStackTrace();
         }
-        Session mSession = sf.openSession();
-        Transaction tx = null;
-        try {
-            tx = mSession.beginTransaction();
-            userToConnect = mSession.createQuery("select p from Personne p where p.email =: email", Personne.class)
-            .setParameter("email", email).getSingleResult();
-//            System.out.println(userToConnect.toString());
-//            String sql = "SELECT * FROM Personne WHERE email = :email";
-//             NativeQuery<Personne> nq = mSession.createNativeQuery(sql, Personne.class);
-//            nq.setParameter("email", email);
-//            userToConnect = nq.uniqueResult();
-            if (userToConnect != null) {
-                db_password = userToConnect.getPassword();
-            }
-            tx.commit();
-           
-        } catch (Exception e) {
-            if (tx != null)
-                tx.rollback();
-            messages.put("error", "Identifiant inconnus. Veuillez vous enregistrer");
-            mSession.close();
-            sf.close();
-            doGet(req, resp);       
-            return;
-            } finally {
-            mSession.close();
-            sf.close();
-        }
-        // Si l'utilisateur est inconnu dans la BDD
-        if (null == userToConnect) {
-            messages.put("error", "Identifiant inconnus. Veuillez vous enregistrer");
-            doGet(req, resp);
-            return;
-        }
+        db_password = u.getPassword();
         if (!db_password.isEmpty()) {
             // Decrypte password via BCrypt
             boolean res = BCrypt.checkpw(password, db_password);
             if (res == true) {
                 HttpSession _session = req.getSession();
-                _session.setAttribute("_user", userToConnect);
+                _session.setAttribute("_user", u);
                 resp.sendRedirect("acount");
             } else {
                 messages.put("error", "Identification incorrecte");

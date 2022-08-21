@@ -8,7 +8,7 @@ public interface IUser {
     // Enregistrer un utilisateur
     public int RecordUser(User user) throws SQLException; 
     
-    // Logger un utilisateur
-    public int LoginUser(User user) throws SQLException;
+    // Logger un utilisateur par son email
+    public User LoginUserByEmail(String email) throws SQLException;
 
 }

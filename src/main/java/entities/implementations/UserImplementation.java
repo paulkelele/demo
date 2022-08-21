@@ -2,6 +2,7 @@ package entities.implementations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
  
@@ -14,12 +15,8 @@ public class UserImplementation implements IUser {
     @Override
     public int RecordUser(User user) throws SQLException{
         int i = 0;
-        Connection con = null;
-        if(null == con){
-         con = SingletonConnection.getConnection();
-         System.out.println(" IN NULLLLL");
-        }
-         String sql ="INSERT INTO user(firstName, lastName, email, password, pseudo, created_at)"+
+        Connection con = SingletonConnection.getConnection();
+        String sql ="INSERT INTO user(firstName, lastName, email, password, pseudo, created_at)"+
          " values(?,?,?,?,?,?)";
          
             PreparedStatement ps = con.prepareStatement(sql);
@@ -31,15 +28,28 @@ public class UserImplementation implements IUser {
             ps.setDate(6, user.getCreated_at());
 
             i = ps.executeUpdate();
-           
-        
         return i;
     }
 
     @Override
-    public int LoginUser(User user) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+    public User LoginUserByEmail(String email) throws SQLException {
+        User u = new User();
+         Connection con = SingletonConnection.getConnection();
+        String sql = "SELECT * from user WHERE email = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            u.setId(rs.getInt("id"));
+            u.setFirstName(rs.getString("firstName"));
+            u.setLastName(rs.getString("lastName"));
+            u.setEmail(rs.getString("email"));
+            u.setPassword(rs.getString("password"));
+            u.setPseudo(rs.getString("pseudo"));
+            u.setCreated_at(rs.getDate("created_at"));
+        }
+        
+        return u;
     }
     
 }

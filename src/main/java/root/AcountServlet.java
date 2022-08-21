@@ -13,17 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
-import database.SessionFactoryDataBase;
-import entities.Commentaire;
-import entities.Personne;
+import entities.User;
 
 @WebServlet("/acount")
 public class AcountServlet extends HttpServlet implements Filter{
-  Personne p = null;
+  User u = null;
   
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -34,10 +28,9 @@ public class AcountServlet extends HttpServlet implements Filter{
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       HttpSession _session = req.getSession();
-      
       if(null != _session.getAttribute("_user")){
-        p = (Personne)_session.getAttribute("_user");
-        _session.setAttribute("s_id", p.getPrenom()+" "+p.getNom());
+        u = (User)_session.getAttribute("_user");
+        _session.setAttribute("s_id", u.getLastName()+" "+u.getFirstName());
       }
      
       req.getRequestDispatcher("acount.jsp").forward(req,resp);
@@ -45,36 +38,36 @@ public class AcountServlet extends HttpServlet implements Filter{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      String comment = (String)req.getParameter("comment");
-      if(null != comment && !comment.isEmpty()){
+      // String comment = (String)req.getParameter("comment");
+      // if(null != comment && !comment.isEmpty()){
          
-        Commentaire cm = new Commentaire();
-        cm.setUncommentaire(comment);
-        cm.setPersonne(p);
-        SessionFactoryDataBase sfd = new SessionFactoryDataBase();
-        SessionFactory sessionFactory = null;
-        try {
-            sessionFactory = sfd.getSessionFactoryInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.persist(cm);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
+      //   Commentaire cm = new Commentaire();
+      //   cm.setUncommentaire(comment);
+      //   cm.setPersonne(u);
+      //   SessionFactoryDataBase sfd = new SessionFactoryDataBase();
+      //   SessionFactory sessionFactory = null;
+      //   try {
+      //       sessionFactory = sfd.getSessionFactoryInstance();
+      //   } catch (Exception e) {
+      //       e.printStackTrace();
+      //   }
+      //   Session session = sessionFactory.openSession();
+      //   Transaction tx = null;
+      //   try {
+      //       tx = session.beginTransaction();
+      //       session.persist(cm);
+      //       tx.commit();
+      //   } catch (Exception e) {
+      //       if (tx != null) {
+      //           tx.rollback();
+      //       }
              
-        } finally {
-            session.close();
-            sessionFactory.close();
-        }
+      //   } finally {
+      //       session.close();
+      //       sessionFactory.close();
+      //   }
         
-      }
+      // }
       doGet(req, resp);
     }
 
