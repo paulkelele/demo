@@ -5,5 +5,10 @@ import java.sql.SQLException;
 import entities.User;
 
 public interface IUser {
-    public int AjouterUser(User user) throws SQLException;
+    // Enregistrer un utilisateur
+    public int RecordUser(User user) throws SQLException; 
+    
+    // Logger un utilisateur
+    public int LoginUser(User user) throws SQLException;
+
 }

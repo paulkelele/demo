@@ -63,45 +63,20 @@ public class InscriptionServlet extends HttpServlet{
         u.setPassword(password);
         u.setCreated_at(new Date(System.currentTimeMillis()));
         UserImplementation ui = new UserImplementation();
-        int i = 0;
+        
         try {
-            i = ui.AjouterUser(u);
+            int i = ui.RecordUser(u);
         } catch (SQLException e) {
             String messageErreur = "";
                if(e instanceof SQLIntegrityConstraintViolationException){
-                messageErreur="Email déja utilise";
+                messageErreur="Email déjà utilisé";
                }
                 messages.put("error", messageErreur);
              doGet(req, resp);
             return;
              
         }
-        System.out.println("Nombre enregistrement: "+i);
-        // SessionFactoryDataBase sfd = new SessionFactoryDataBase();
-        // SessionFactory sessionFactory = null;
-        // try {
-        //     sessionFactory = sfd.getSessionFactoryInstance();
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        // Session session = sessionFactory.openSession();
-        // Transaction tx = null;
-        // try {
-        //     tx = session.beginTransaction();
-        //     session.persist(p);
-        //     tx.commit();
-        // } catch (Exception e) {
-        //     if (tx != null) {
-        //         tx.rollback();
-        //     }
-        //     messages.put("error", "Un compte est déjà associé à cet email.");
-        //      doGet(req, resp);
-        //     return;
-        // } finally {
-        //     session.close();
-        //     sessionFactory.close();
-        // }
-         messages.put("ok", "Votre compte a bien été créé.");
+        messages.put("ok", "Votre compte a bien été créé.");
         doGet(req, resp);
     }
 

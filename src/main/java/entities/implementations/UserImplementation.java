@@ -12,7 +12,7 @@ import entities.interfaces.IUser;
 public class UserImplementation implements IUser {
 
     @Override
-    public int AjouterUser(User user) throws SQLException{
+    public int RecordUser(User user) throws SQLException{
         int i = 0;
         Connection con = null;
         if(null == con){
@@ -34,6 +34,12 @@ public class UserImplementation implements IUser {
            
         
         return i;
+    }
+
+    @Override
+    public int LoginUser(User user) throws SQLException {
+        // TODO Auto-generated method stub
+        return 0;
     }
     
 }
