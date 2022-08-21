@@ -70,6 +70,8 @@ public class InscriptionServlet extends HttpServlet{
             String messageErreur = "";
                if(e instanceof SQLIntegrityConstraintViolationException){
                 messageErreur="Email déjà utilisé";
+               }else{
+                messageErreur = e.getMessage();
                }
                 messages.put("error", messageErreur);
              doGet(req, resp);
