@@ -60,8 +60,7 @@ public class Settings extends HttpServlet {
 					return;
 				}
         	}else {
- 			req.setAttribute("messages", "Session Invalide");
-			resp.sendRedirect("login");
+ 			 resp.sendRedirect("login");
 			return;
 			}
         	 
