@@ -1,4 +1,4 @@
-package root;
+package entities;
 
 public class FriendShip {
     private int id_requester ;
