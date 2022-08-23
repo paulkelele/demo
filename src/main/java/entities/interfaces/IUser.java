@@ -6,12 +6,14 @@ import entities.User;
 
 public interface IUser {
     // Enregistrer un utilisateur
-    public int RecordUser(User user) throws SQLException; 
+    public int recordUser(User user) throws SQLException; 
     
     // Logger un utilisateur par son email
-    public User LoginUserByEmail(String email) throws SQLException;
+    public User loginUserByEmail(String email) throws SQLException;
 
     // Mettre à jour le pseudo par id user
-    public void UpdatePseudo(String pseudo, int id) throws SQLException;
+    public void updatePseudo(String pseudo, int id) throws SQLException; 
 
+    // Chercher user by ID
+    public int userIdByPseudo(String pseudo) throws SQLException;
 }

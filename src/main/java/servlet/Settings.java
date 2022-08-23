@@ -53,7 +53,7 @@ public class Settings extends HttpServlet {
         	if(null != u) {
 				UserImplementation ui = new UserImplementation();
 				try {
-					 ui.UpdatePseudo(pseudo, u.getId());
+					 ui.updatePseudo(pseudo, u.getId());
 				} catch (SQLException e){
 					messagesFromSettings.put("error", e.getMessage());
 					resp.sendRedirect("acount");

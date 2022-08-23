@@ -20,7 +20,11 @@ if(session.getAttribute("s_id")== null){
 				Enregistrer</button>
 	   	</form>
 	   
-
+		<form action="friend" method="post">
+	    	<input class="form-control ml-4" type="text" name="friend" placeholder="Ajouter un ami" id="friend">
+			<button class="btn mt-1" style="color:yellow ;" type="submit">
+				Enregistrer</button>
+	   	</form>
 		<% 
 		Map<String, String> messagesFromSettings = (Map)session.getAttribute("messagesFromSettings");
                 if(messagesFromSettings != null){

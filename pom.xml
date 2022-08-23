@@ -167,5 +167,3 @@
     </dependencies>
   </dependencyManagement>
 </project>
-<!-- /usr/share/tomcat9/bin [+] créer un ficher setenv.sh [+] chmod +x setenv.sh [+]  JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64 [+] redemarrer tomcat9"
--->

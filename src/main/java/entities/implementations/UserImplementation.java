@@ -13,7 +13,7 @@ import entities.interfaces.IUser;
 public class UserImplementation implements IUser {
 
     @Override
-    public int RecordUser(User user) throws SQLException{
+    public int recordUser(User user) throws SQLException{
         int i = 0;
         Connection con = SingletonConnection.getConnection();
         String sql ="INSERT INTO user(firstName, lastName, email, password, pseudo, created_at)"+
@@ -32,7 +32,7 @@ public class UserImplementation implements IUser {
     }
 
     @Override
-    public User LoginUserByEmail(String email) throws SQLException {
+    public User loginUserByEmail(String email) throws SQLException {
         User u = new User();
         Connection con = SingletonConnection.getConnection();
         String sql = "SELECT * from user WHERE email = ?";
@@ -53,7 +53,7 @@ public class UserImplementation implements IUser {
     }
 
     @Override
-    public void UpdatePseudo(String pseudo, int id) throws SQLException {
+    public void updatePseudo(String pseudo, int id) throws SQLException {
         Connection con = SingletonConnection.getConnection();
         String sql = "UPDATE user set pseudo = ?  WHERE id = ?";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -65,5 +65,19 @@ public class UserImplementation implements IUser {
     }
 
     
-    
+    @Override
+    public int userIdByPseudo(String pseudo) throws SQLException {
+         
+        Connection con = SingletonConnection.getConnection();
+        String sql = "SELECT id from user WHERE pseudo = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, pseudo);
+        ResultSet rs = ps.executeQuery();
+        int id  = 0;
+        while(rs.next()){
+            id = rs.getInt("id");
+         }
+        
+        return id;
+    }
 }

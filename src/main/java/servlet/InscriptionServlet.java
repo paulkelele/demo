@@ -56,7 +56,7 @@ public class InscriptionServlet extends HttpServlet{
         UserImplementation ui = new UserImplementation();
         
         try {
-            int i = ui.RecordUser(u);
+            int i = ui.recordUser(u);
         } catch (SQLException e) {
             String messageErreur = "";
                if(e instanceof SQLIntegrityConstraintViolationException){

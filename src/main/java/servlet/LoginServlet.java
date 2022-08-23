@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         User u = new User();
         try{
             UserImplementation ui = new UserImplementation();
-            u = ui.LoginUserByEmail(email);
+            u = ui.loginUserByEmail(email);
         }catch(SQLException e){
             e.printStackTrace();
         }
