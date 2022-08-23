@@ -39,6 +39,7 @@ public class FriendServlet extends HttpServlet {
 		}
         Map<String, String> messagesFromSettings = new HashMap<>();
         _session.setAttribute("messagesFromSettings",(Object) messagesFromSettings);
+        
        String friend_pseudo =(String)req.getParameter("friend");
        if(null != friend_pseudo){
          if(friend_pseudo.isEmpty()){
@@ -54,8 +55,7 @@ public class FriendServlet extends HttpServlet {
                 try {
                     FriendshipImplementation fi = new FriendshipImplementation();
                   int friend_id = ui.userIdByPseudo("@"+friend_pseudo);
-                  System.err.println("DDDDDDDDDDDDDD "+friend_id);
-                    int res = fi.recordFriendShip(u.getId(), friend_id);
+                     int res = fi.recordFriendShip(u.getId(), friend_id);
 
                 } catch (SQLException e) {
                     

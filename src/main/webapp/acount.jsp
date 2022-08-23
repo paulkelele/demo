@@ -73,7 +73,7 @@ if(session.getAttribute("s_id")== null){
 			Enregistrer</button>
 	   </form>
 	   <%
-	   List<String> commentaire = (ArrayList<String>) session.getAttribute("commentaire");
+	   List<String> commentaire = (ArrayList) session.getAttribute("commentaire");
 	   if(null != commentaire){
 		for(String com:commentaire){%>
 			<div class="Box mt-2">
