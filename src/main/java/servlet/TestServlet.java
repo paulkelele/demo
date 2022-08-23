@@ -1,4 +1,4 @@
-package root;
+package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
