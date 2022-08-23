@@ -1,9 +1,12 @@
 package entities;
 
+import java.sql.Date;
+
 public class FriendShip {
     private int id_requester ;
     private int id_requestee ;
     private char type;
+    private Date created_at;
     
     public FriendShip(){}
 
@@ -24,5 +27,11 @@ public class FriendShip {
     }
     public void setType(char type) {
         this.type = type;
+    }
+    public Date getCreated_at() {
+        return created_at;
+    }
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }
