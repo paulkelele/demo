@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" data-color-mode="dark" data-dark-theme="dark_dimmed">
 <head>
-<title>S</title>
+<title>SAER</title>
  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/icone.png" type="image/x-icon"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <style type="text/css">
