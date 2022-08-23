@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, String> messages = new HashMap<String, String>();
-        req.setAttribute("messages", messages);
+        req.setAttribute("messages",(Object) messages);
         String email = req.getParameter("email");
         email = email.toLowerCase();
         String password = req.getParameter("password");

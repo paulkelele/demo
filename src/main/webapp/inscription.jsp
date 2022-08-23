@@ -12,7 +12,7 @@
             <input class="form-control" type="text" name="prenom" placeholder="Prenom" id="prenom">
             <button class="btn" style="color:yellow ;" type="submit">Je cr&eacute;e mon compte</button>
         </form>
-        <% Map<String, String> messages = (Map<String, String>)request.getAttribute("messages");
+        <% Map<String, String> messages = (Map) request.getAttribute("messages");
                 if(messages != null){
                             if(messages.containsKey("error")){
                 %>

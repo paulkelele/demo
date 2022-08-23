@@ -39,8 +39,8 @@ public class Settings extends HttpServlet {
 			resp.sendRedirect("login");
 			return;
 		}
-		final Map<String, String> messagesFromSettings = new HashMap<>();
- 	        _session.setAttribute("messagesFromSettings", messagesFromSettings);
+		  Map<String, String> messagesFromSettings = new HashMap<>();
+ 	        _session.setAttribute("messagesFromSettings",(Object) messagesFromSettings);
 		String pseudo =(String)req.getParameter("pseudo");
         
         if(null != pseudo) {

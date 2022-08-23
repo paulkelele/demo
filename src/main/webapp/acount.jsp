@@ -22,7 +22,7 @@ if(session.getAttribute("s_id")== null){
 	   
 
 		<% 
-		Map<String, String> messagesFromSettings = (Map<String, String>)session.getAttribute("messagesFromSettings");
+		Map<String, String> messagesFromSettings = (Map)session.getAttribute("messagesFromSettings");
                 if(messagesFromSettings != null){
                              if(messagesFromSettings.containsKey("error")){
 

@@ -28,8 +28,8 @@ public class InscriptionServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, String> messages = new HashMap<String, String>();
-        req.setAttribute("messages", messages);
+        Map<String, String> messages = new HashMap<>();
+        req.setAttribute("messages",(Object)messages);
 
         String email = req.getParameter("email");
         email = email.toLowerCase();

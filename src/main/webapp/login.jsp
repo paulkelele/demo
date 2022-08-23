@@ -13,7 +13,7 @@
 			connecter</button>
 	</form>
 	<%
-	Map<String, String> messages = (Map<String, String>) request.getAttribute("messages");
+	Map<String, String> messages =  (Map)request.getAttribute("messages");
 	if (messages != null) {
 	%>
 	<div class="flash mt-3 flash-warn" style="width: fit-content;">
