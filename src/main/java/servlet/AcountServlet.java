@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
+
 import entities.Commentaire;
 import entities.User;
 import entities.implementations.CommentaireImplementation;
@@ -57,6 +59,10 @@ public class AcountServlet extends HttpServlet implements Filter{
       } catch (SQLException e) {
          e.printStackTrace();
       }
+      all_comments.forEach((key,value)->{
+        System.out.println("Key "+ key.toString()+" value"+value);
+      });
+
       if(null != all_comments)
       _session.setAttribute("allcomments",all_comments);
        
