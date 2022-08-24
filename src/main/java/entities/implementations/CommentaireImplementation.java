@@ -38,4 +38,13 @@ public class CommentaireImplementation implements Icommentaire {
         return allComments;
     }
     
+    @Override
+    public int deleteOneCommentById(int comment_id) throws SQLException {
+        Connection con = SingletonConnection.getConnection();
+        String sql="DELETE FROM commentaire WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, comment_id);
+        int i= ps.executeUpdate();
+         return i;
+    }
 }

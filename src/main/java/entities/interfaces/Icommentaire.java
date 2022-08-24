@@ -12,4 +12,6 @@ public interface Icommentaire {
     // trouver tous les commentaires d'un user par son id
     public List<String> findAllCommentsByUserId(int user_id) throws SQLException;
 
+    // supprimer un commentaire d'un user par son id
+    public int deleteOneCommentById(int comment_id) throws SQLException;
 }
