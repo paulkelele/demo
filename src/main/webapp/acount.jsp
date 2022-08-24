@@ -79,7 +79,7 @@ if(session.getAttribute("s_id")== null){
  			<textarea class="form-control" style="resize: none;" id="textarea"
 			name="comment" placeholder="Commentaire.." rows="4" cols="50"></textarea>
 		   <button class="btn mt-1" style="color:yellow ;" type="submit">
-				Poster un commentaire</button>
+				Poster un commentaire</button> <button type="button" class="btn mt-1" style="color:yellow ;" id="btn">emojis</button>
         </form>
 		<c:forEach items="${allcomments}" var="entry">
  			<div class="Box mt-2">
@@ -148,16 +148,18 @@ if(session.getAttribute("s_id")== null){
     meatball swine sausage ground round. Tail pork loin ribeye kielbasa short ribs pork chop.
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/index.min.js"></script>
 <script>
 var input = document.getElementById('textarea');
+var btnClick = document.getElementById('btn');
+
 var picker = new EmojiButton({
 	position:'left'
 })
 picker.on('emoji', function(emoji){
 	input.value += emoji;
 })
-input.addEventListener('click',function(){
+btnClick.addEventListener('mouseenter',function(){
 	picker.pickerVisible ? picker.hidePicker() : picker.showPicker(input);
 })
 </script>
