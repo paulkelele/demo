@@ -10,6 +10,7 @@
             <input class="form-control" type="password" placeholder="Mot de passe" name="password" id="password">
             <input class="form-control" type="text" name="nom" placeholder="Nom" id="nom">
             <input class="form-control" type="text" name="prenom" placeholder="Prenom" id="prenom">
+            <input class="form-control" type="text" name="pseudo" placeholder="Pseudo" id="pseudo">
             <button class="btn" style="color:yellow ;" type="submit">Je cr&eacute;e mon compte</button>
         </form>
         <% Map<String, String> messages = (Map) request.getAttribute("messages");

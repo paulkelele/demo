@@ -36,6 +36,8 @@ public class InscriptionServlet extends HttpServlet{
         String password = req.getParameter("password");
         String nom = req.getParameter("nom").trim();
         String prenom = req.getParameter("prenom").trim();
+        String pseudo = req.getParameter("pseudo").trim();
+
         if(email.isEmpty() || !email.contains("@")){
             messages.put("error", "Email vide ou incorrect");
         	doGet(req, resp);
@@ -56,6 +58,11 @@ public class InscriptionServlet extends HttpServlet{
         	doGet(req, resp);
         	return;
         }
+        if(pseudo.isEmpty()){
+            messages.put("error", "Pseudo ne peut être vide");
+        	doGet(req, resp);
+        	return;
+        }
         // Encode password via BCrypt
         password = BCrypt.hashpw(password, BCrypt.gensalt());
 
@@ -65,6 +72,7 @@ public class InscriptionServlet extends HttpServlet{
         User u = new User();
         u.setFirstName(nom);
         u.setLastName(prenom);
+        u.setPseudo("@"+pseudo);
         u.setEmail(email);
         u.setPassword(password);
         u.setCreated_at(new Date(System.currentTimeMillis()));
@@ -75,7 +83,11 @@ public class InscriptionServlet extends HttpServlet{
         } catch (SQLException e) {
             String messageErreur = "";
                if(e instanceof SQLIntegrityConstraintViolationException){
-                messageErreur="Email déjà utilisé";
+                if(e.getMessage().contains("user.email")){
+                    messageErreur="Email déjà utilisé" ;
+                } else if(e.getMessage().contains("user.pseudo")){
+                    messageErreur="Pseudo déjà utilisé" ;
+                }
                }else{
                 messageErreur = e.getMessage();
                }
