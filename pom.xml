@@ -167,3 +167,4 @@
     </dependencies>
   </dependencyManagement>
 </project>
+<!--  mvn war:exploded -f "/home/stef/mycompilation/servlet/demo/pom.xml" -->
