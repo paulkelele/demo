@@ -28,7 +28,6 @@ public class TestServlet extends HttpServlet{
             list.add(feel);
              _session.setAttribute("commentaire", list);
         }
-       
         resp.sendRedirect("acount");
     }
     
