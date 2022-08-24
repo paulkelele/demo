@@ -11,6 +11,7 @@ if(session.getAttribute("s_id")== null){
 <jsp:directive.include file="header2.jsp" />
  
  <div class="d-table col-12">
+ <%-- premiere colonne --%>
   <div class="col-4 d-table-cell border p-2">
 		<form action="settings" method="post">
 			<span style="font-size:22px;vertical-align: bottom;">@</span>
@@ -53,10 +54,24 @@ if(session.getAttribute("s_id")== null){
                 }
                 } 
          %>
-
+	  <%
+	   List<String> friends = (ArrayList) session.getAttribute("listfriends");
+	   if(null != friends){
+		for(String friend:friends){%>
+			<div class="Box mt-2">
+				<ul>
+   				 <li class="Box-row">
+					<%= friend %>
+					</li>
+				</ul>
+			</div>
+			<%
+		 }
+	   }
+		%>
 	   	  
 	</div>
-	<!--
+	<!--MILIEU
   -->
 	<div class="col-4 d-table-cell border p-2">
    		<form action="acount" method="post">

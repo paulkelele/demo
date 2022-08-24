@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import entities.Commentaire;
 import entities.User;
 import entities.implementations.CommentaireImplementation;
+import entities.implementations.FriendshipImplementation;
 
 @WebServlet("/acount")
 public class AcountServlet extends HttpServlet implements Filter{
@@ -35,7 +37,14 @@ public class AcountServlet extends HttpServlet implements Filter{
         u = (User)_session.getAttribute("_user");
         _session.setAttribute("s_id", u.getLastName()+" "+u.getFirstName());
       }
-     
+       FriendshipImplementation fi = new FriendshipImplementation();
+      List<String> list_friends = null;
+      try {
+        list_friends = fi.listOfFriend(u.getId());
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      _session.setAttribute("listfriends", list_friends);
       req.getRequestDispatcher("acount.jsp").forward(req,resp);
       }
 
