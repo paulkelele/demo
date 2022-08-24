@@ -159,7 +159,7 @@ var picker = new EmojiButton({
 picker.on('emoji', function(emoji){
 	input.value += emoji;
 })
-btnClick.addEventListener('mouseenter',function(){
+btnClick.addEventListener('click',function(){
 	picker.pickerVisible ? picker.hidePicker() : picker.showPicker(input);
 })
 </script>
