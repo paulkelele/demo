@@ -81,6 +81,21 @@ if(session.getAttribute("s_id")== null){
 		   <button class="btn mt-1" style="color:yellow ;" type="submit">
 				Enregistrer</button>
         </form>
+		  <%
+	   List<String> allcomments = (ArrayList) session.getAttribute("allcomments");
+	   if(null != allcomments){
+		for(String comment:allcomments){%>
+			<div class="Box mt-2">
+				<ul>
+   				 <li class="Box-row">
+					<%= comment %>
+					</li>
+				</ul>
+			</div>
+			<%
+		 }
+	   }
+		%>
 	   ....
 	   <form action="test" method="post">
 	    <input class="form-control" type="text" name="feel" placeholder="comment" id="prenom">

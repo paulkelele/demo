@@ -45,6 +45,7 @@ public class AcountServlet extends HttpServlet implements Filter{
       } catch (SQLException e) {
         e.printStackTrace();
       }
+      if(null != list_friends)
       _session.setAttribute("listfriends", list_friends);
 
       // recuperation des commentaires
@@ -55,9 +56,9 @@ public class AcountServlet extends HttpServlet implements Filter{
       } catch (SQLException e) {
          e.printStackTrace();
       }
-      for (String string : all_comments) {
-        System.out.println("Commantaire: "+string);
-      }
+      if(null != all_comments)
+      _session.setAttribute("allcomments",all_comments);
+       
       req.getRequestDispatcher("acount.jsp").forward(req,resp);
       }
 
