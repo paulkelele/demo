@@ -1,8 +1,8 @@
 -- Active: 1660497314780@@127.0.0.1@3306@tada
 
-drop TABLE friendship;
+drop TABLE `friendship`;
 
-drop TABLE commentaire;
+drop TABLE `commentaire`;
 
 drop TABLE `user`;
 
