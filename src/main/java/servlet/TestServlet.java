@@ -26,8 +26,7 @@ public class TestServlet extends HttpServlet{
         
         if(null != feel && !feel.isEmpty()){
             list.add(feel);
-             System.out.println(feel);
-            _session.setAttribute("commentaire", list);
+             _session.setAttribute("commentaire", list);
         }
        
         resp.sendRedirect("acount");

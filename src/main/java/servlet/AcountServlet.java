@@ -4,12 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,9 +63,6 @@ public class AcountServlet extends HttpServlet  {
       } catch (SQLException e) {
          e.printStackTrace();
       }
-      all_comments.forEach((key,value)->{
-        System.out.println("Key "+ key.toString()+" value"+value);
-      });
 
       if(null != all_comments)
       _session.setAttribute("allcomments",all_comments);
