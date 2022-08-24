@@ -37,7 +37,8 @@ public class AcountServlet extends HttpServlet implements Filter{
         u = (User)_session.getAttribute("_user");
         _session.setAttribute("s_id", u.getLastName()+" "+u.getFirstName());
       }
-       FriendshipImplementation fi = new FriendshipImplementation();
+      // recuperation des amis
+      FriendshipImplementation fi = new FriendshipImplementation();
       List<String> list_friends = null;
       try {
         list_friends = fi.listOfFriend(u.getId());
@@ -45,12 +46,23 @@ public class AcountServlet extends HttpServlet implements Filter{
         e.printStackTrace();
       }
       _session.setAttribute("listfriends", list_friends);
+
+      // recuperation des commentaires
+      CommentaireImplementation ci = new CommentaireImplementation();
+      List<String> all_comments = null;
+      try {
+       all_comments = ci.findAllCommentsByUserId(u.getId());
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+      for (String string : all_comments) {
+        System.out.println("Commantaire: "+string);
+      }
       req.getRequestDispatcher("acount.jsp").forward(req,resp);
       }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     
       HttpSession _session = req.getSession();
       if(null != _session.getAttribute("_user")){
         u = (User)_session.getAttribute("_user");

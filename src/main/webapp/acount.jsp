@@ -15,14 +15,14 @@ if(session.getAttribute("s_id")== null){
   <div class="col-4 d-table-cell border p-2">
 		<form action="settings" method="post">
 			<span style="font-size:22px;vertical-align: bottom;">@</span>
-
 	    	<input class="form-control" type="text" name="pseudo" placeholder="Votre pseudo" id="pseudo">
 			<button class="btn mt-1" style="color:yellow ;" type="submit">
 				Enregistrer</button>
 	   	</form>
 	   
 		<form action="friend" method="post">
-	    	<input class="form-control ml-4" type="text" name="friend" placeholder="Ajouter un ami" id="friend">
+			<span style="font-size:22px;vertical-align: bottom;">@</span>
+	    	<input class="form-control" type="text" name="friend" placeholder="Ajouter un ami" id="friend">
 			<button class="btn mt-1" style="color:yellow ;" type="submit">
 				Enregistrer</button>
 	   	</form>

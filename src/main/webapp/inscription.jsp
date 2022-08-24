@@ -6,11 +6,11 @@
     <div class="ml-3">
         <h3>Cr&eacute;ation de votre compte</h3>
         <form action="inscription" method="post">
-            <input class="form-control" type="email" placeholder="Email" name="email" id="nom">
-            <input class="form-control" type="password" placeholder="Mot de passe" name="password" id="password">
-            <input class="form-control" type="text" name="nom" placeholder="Nom" id="nom">
-            <input class="form-control" type="text" name="prenom" placeholder="Prenom" id="prenom">
-            <input class="form-control" type="text" name="pseudo" placeholder="Pseudo" id="pseudo">
+            <p><input class="form-control" type="email" placeholder="Email" name="email" id="nom"></p>
+            <p><input class="form-control" type="password" placeholder="Mot de passe" name="password" id="password"></p>
+            <p><input class="form-control" type="text" name="nom" placeholder="Nom" id="nom"></p>
+            <p><input class="form-control" type="text" name="prenom" placeholder="Prenom" id="prenom"></p>
+            <p><input class="form-control" type="text" name="pseudo" placeholder="Pseudo" id="pseudo"></p>
             <button class="btn" style="color:yellow ;" type="submit">Je cr&eacute;e mon compte</button>
         </form>
         <% Map<String, String> messages = (Map) request.getAttribute("messages");
