@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, String> messages = new HashMap<String, String>();
         req.setAttribute("messages",(Object) messages);
-        String email = req.getParameter("email");
+        String email = req.getParameter("email").trim();
         email = email.toLowerCase();
         String password = req.getParameter("password");
         if (password.trim().isEmpty() || email.trim().isEmpty()) {

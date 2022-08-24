@@ -31,13 +31,28 @@ public class InscriptionServlet extends HttpServlet{
         Map<String, String> messages = new HashMap<>();
         req.setAttribute("messages",(Object)messages);
 
-        String email = req.getParameter("email");
+        String email = req.getParameter("email").trim();
         email = email.toLowerCase();
         String password = req.getParameter("password");
-        String nom = req.getParameter("nom");
-        String prenom = req.getParameter("prenom");
+        String nom = req.getParameter("nom").trim();
+        String prenom = req.getParameter("prenom").trim();
+        if(email.isEmpty() || !email.contains("@")){
+            messages.put("error", "Email vide ou incorrect");
+        	doGet(req, resp);
+        	return;
+        }
         if(password.length()<= 4) {
         	messages.put("error", "Le mote de passe doit contenir au moins 5 caractères");
+        	doGet(req, resp);
+        	return;
+        }
+        if(nom.isEmpty()){
+            messages.put("error", "Nom ne peut être vide");
+        	doGet(req, resp);
+        	return;
+        }
+        if(prenom.isEmpty()){
+            messages.put("error", "Prenom ne peut être vide");
         	doGet(req, resp);
         	return;
         }
