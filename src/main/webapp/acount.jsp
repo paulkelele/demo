@@ -83,25 +83,19 @@ if(session.getAttribute("s_id")== null){
         </form>
 		<div class="Box mt-2">
 			<div class="Box-header clearfix">
-				
 				<h3 class="Box-title overflow-hidden pr-3">	 Messages</h3>
 			</div>
 			<c:forEach items="${allcomments}" var="entry">
-
 				<ul>
    				 <li class="Box-row" style="width: 460px;">
 					<a href="${pageContext.request.contextPath}/acount?id=${entry.key}" class="Box-btn-octicon btn-octicon float-right">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
 					</a>
 					<span class="overflow-hidden pr-3">	${entry.value} </span>
-
-					
 					</li>
 				</ul>
-
 			</c:forEach>
 			</div>
-		 
 	   ....
 	   <form action="test" method="post">
 	    <input class="form-control" type="text" name="feel" placeholder="comment" id="prenom">
