@@ -16,29 +16,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 import entities.Commentaire;
 import entities.User;
 import entities.implementations.CommentaireImplementation;
 import entities.implementations.FriendshipImplementation;
+import entities.interfaces.Icommentaire;
 
 @WebServlet("/acount")
-public class AcountServlet extends HttpServlet implements Filter{
+public class AcountServlet extends HttpServlet  {
   User u = null;
   
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException {
-          chain.doFilter(request, response);
-    }
-  
+    
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       HttpSession _session = req.getSession();
       if(null != _session.getAttribute("_user")){
         u = (User)_session.getAttribute("_user");
         _session.setAttribute("s_id", u.getLastName()+" "+u.getFirstName());
+      }
+      if(null !=req.getParameter("id") ){
+
+        int i = Integer.parseInt(req.getParameter("id"));
+        Icommentaire ic = new CommentaireImplementation();
+        int nbrrow = 0;
+        try {
+          nbrrow = ic.deleteOneCommentById(i);
+        } catch (SQLException e) {
+          
+          e.printStackTrace();
+        }
+        resp.sendRedirect("acount");
+        return;
       }
       // recuperation des amis
       FriendshipImplementation fi = new FriendshipImplementation();
