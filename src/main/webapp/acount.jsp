@@ -7,6 +7,7 @@ if(session.getAttribute("s_id")== null){
 }
  %>
  <%@page import="java.util.*" %>
+ <%@ page contentType="text/html; charset=UTF-8" %>
  
 <jsp:directive.include file="header2.jsp" />
  

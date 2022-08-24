@@ -50,3 +50,10 @@ RENAME TABLE friend TO friendship;
 SELECT id,`firstName`,`lastName`,email,password,pseudo,created_at FROM `user`;
 
 describe TABLE user;
+
+ALTER TABLE commentaire CONVERT TO CHARACTER SET utf8mb4 ;
+
+SELECT * FROM commentaire;
+describe commentaire;
+
+SHOW CHARACTER SET;

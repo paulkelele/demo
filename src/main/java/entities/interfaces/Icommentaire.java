@@ -1,7 +1,6 @@
 package entities.interfaces;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 
 import entities.Commentaire;

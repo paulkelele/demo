@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import database.SingletonConnection;
@@ -20,6 +18,7 @@ public class CommentaireImplementation implements Icommentaire {
         Connection con = SingletonConnection.getConnection();
         String sql = "INSERT INTO commentaire(texte, user_id) values(?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
+        System.out.println(cm.getTexte());
         ps.setString(1, cm.getTexte());
         ps.setInt(2, cm.getUser_id());
         int i = ps.executeUpdate();
