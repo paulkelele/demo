@@ -76,7 +76,7 @@ if(session.getAttribute("s_id")== null){
   -->
 	<div class="col-4 d-table-cell border p-2">
    		<form action="acount" method="post">
- 			<textarea class="form-control" style="resize: none;"
+ 			<textarea class="form-control" style="resize: none;" id="textarea"
 			name="comment" placeholder="Commentaire.." rows="4" cols="50"></textarea>
 		   <button class="btn mt-1" style="color:yellow ;" type="submit">
 				Poster un commentaire</button>
@@ -148,4 +148,17 @@ if(session.getAttribute("s_id")== null){
     meatball swine sausage ground round. Tail pork loin ribeye kielbasa short ribs pork chop.
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
+<script>
+var input = document.getElementById('textarea');
+var picker = new EmojiButton({
+	position:'left'
+})
+picker.on('emoji', function(emoji){
+	input.value += emoji;
+})
+input.addEventListener('click',function(){
+	picker.pickerVisible ? picker.hidePicker() : picker.showPicker(input);
+})
+</script>
 <jsp:directive.include file="footer.jsp" />

@@ -18,13 +18,12 @@ public class CommentaireImplementation implements Icommentaire {
         Connection con = SingletonConnection.getConnection();
         String sql = "INSERT INTO commentaire(texte, user_id) values(?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
-        System.out.println(cm.getTexte());
-        ps.setString(1, cm.getTexte());
+         ps.setString(1, cm.getTexte());
         ps.setInt(2, cm.getUser_id());
         int i = ps.executeUpdate();
         return i;
     }
-
+ 
     @Override
     public Map<Integer,String> findAllCommentsByUserId(int user_id) throws SQLException {
         Map<Integer,String> allComments = new HashMap<>();
