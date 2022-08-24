@@ -72,8 +72,7 @@ public class AcountServlet extends HttpServlet  {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      req.setCharacterEncoding("UTF-8");
-      HttpSession _session = req.getSession();
+       HttpSession _session = req.getSession();
       if(null != _session.getAttribute("_user")){
         u = (User)_session.getAttribute("_user");
       }
