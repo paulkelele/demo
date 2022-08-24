@@ -82,9 +82,13 @@ if(session.getAttribute("s_id")== null){
 				Poster un commentaire</button>
         </form>
 		  <%
-	   List<String> allcomments = (ArrayList) session.getAttribute("allcomments");
-	   if(null != allcomments){
-		for(String comment:allcomments){%>
+	   		Map<Integer,String> allcomments = (Map) session.getAttribute("allcomments");
+	   		if(null != allcomments){
+				allcomments.forEach((key,value)->{
+
+				});
+			for(String comment:allcomments){
+			%>
 			<div class="Box mt-2">
 			<div class="Box-header clearfix">
 			<button href="#" onclick="javascript:alert('tt')" class="Box-btn-octicon btn-octicon float-right">

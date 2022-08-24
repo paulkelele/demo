@@ -2,6 +2,7 @@ package entities.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import entities.Commentaire;
 
@@ -10,7 +11,7 @@ public interface Icommentaire {
     public int addCommentaire(Commentaire cm) throws SQLException;
 
     // trouver tous les commentaires d'un user par son id
-    public List<String> findAllCommentsByUserId(int user_id) throws SQLException;
+    public Map<Integer,String> findAllCommentsByUserId(int user_id) throws SQLException;
 
     // supprimer un commentaire d'un user par son id
     public int deleteOneCommentById(int comment_id) throws SQLException;

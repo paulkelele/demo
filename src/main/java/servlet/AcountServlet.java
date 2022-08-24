@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -50,7 +51,7 @@ public class AcountServlet extends HttpServlet implements Filter{
 
       // recuperation des commentaires
       CommentaireImplementation ci = new CommentaireImplementation();
-      List<String> all_comments = null;
+      Map<Integer,String> all_comments = null;
       try {
        all_comments = ci.findAllCommentsByUserId(u.getId());
       } catch (SQLException e) {
